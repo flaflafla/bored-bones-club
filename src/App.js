@@ -35,11 +35,32 @@ function App() {
   const [mintError, setMintError] = useState("");
   const [feedback, setFeedback] = useState("");
   const [minting, setMinting] = useState(false);
+  // "early" | "presale" | "public" | "over"
+  const [saleState, setSaleState] = useState("early");
 
   useEffect(() => {
     const tree = getMerkleTree();
     setMerkleTree(tree);
   }, []);
+
+  useEffect(() => {
+    console.log({ smartContract });
+  }, [smartContract]);
+
+  // useEffect(() => {
+  //   const totalSupply = Number(data.totalSupply);
+  //   const merkleRoot = Number(data.merkleRoot);
+
+  //   if (totalSupply >= CONFIG.MAX_SUPPLY) {
+  //     setSaleState("over");
+  //   } else if (data.saleActive) {
+  //     setSaleState("public");
+  //   } else if (merkleRoot !== 0) {
+  //     setSaleState("presale");
+  //   } else if (merkleRoot === 0) {
+  //     setSaleState("early");
+  //   }
+  // }, [CONFIG.MAX_SUPPLY, data.merkleRoot, data.saleActive, data.totalSupply]);
 
   const connectMetaMask = useCallback(
     async (e) => {
@@ -91,7 +112,7 @@ function App() {
     async (e) => {
       e.preventDefault();
       setMintError("");
-      const { contractAddress, infuraId } = config;
+      const { contractAddress, infuraId, networkId } = config;
       let provider;
       try {
         provider = new WalletConnectProvider({ infuraId });
@@ -103,9 +124,9 @@ function App() {
       Web3EthContract.setProvider(provider);
       const _web3 = new Web3(provider);
       try {
-        const accounts = await web3.eth.getAccounts();
-        const networkId = await web3.eth.net.getId();
-        if (Number(networkId) === 1) {
+        const accounts = await _web3.eth.getAccounts();
+        const _networkId = await _web3.eth.net.getId();
+        if (Number(_networkId) === networkId) {
           const SmartContractObj = new Web3EthContract(abi, contractAddress);
           setAccount(accounts[0]);
           setSmartContract(SmartContractObj);
@@ -127,28 +148,34 @@ function App() {
     [setAccount, setSmartContract, setWeb3, setMintError]
   );
 
+  // function mintPresale(bytes32[] memory _proof, bytes1 _maxAmountKey, uint256 _mintAmount)
+  // function mint(uint256 _mintAmount)
+
   // TODO
   const mint = useCallback(() => {
-    // const weiCost = 100_000_000_000_000_000;
+    // const { weiCost } = config;
     // // const gasLimit = TODO;
     // setFeedback(`Minting your Bored Bones ...`);
     // setMinting(true);
     // let transaction;
+    // // hardcoded mint amount
+    // const mintAmount = 1;
     // if (saleState === "presale") {
-    //   transaction = blockchain.smartContract.methods.mintPresale(
+    //   const maxAmountKey = "00"; // doesn't matter what it is (?)
+    //   transaction = smartContract.methods.mintPresale(
     //     proof,
-    //     freeMints,
+    //     maxAmountKey,
     //     mintAmount
     //   );
     // } else if (saleState === "public") {
-    //   transaction = blockchain.smartContract.methods.mint(mintAmount);
+    //   transaction = smartContract.methods.mint(mintAmount);
     // }
     // transaction
     //   .send({
     //     gasLimit: String(totalGasLimit),
     //     to: contractAddress,
-    //     from: blockchain.account,
-    //     value: totalCostWei,
+    //     from: account,
+    //     value: weiCost,
     //   })
     //   .once("error", (err) => {
     //     console.error(err);
@@ -157,9 +184,7 @@ function App() {
     //   })
     //   .then((receipt) => {
     //     console.log(receipt);
-    //     setFeedback(
-    //       `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
-    //     );
+    //     setFeedback(`Minted successfully, welcome to Bored Bones Club!`);
     //     setMinting(false);
     //   });
   }, [setMintError, setMinting, setFeedback]);

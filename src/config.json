@@ -8,5 +8,7 @@
         "0x5e8C8f77d6448ee045ae20639425E4cFa6b7f72a2"
     ],
     "contractAddress": "",
-    "infuraId": ""
+    "infuraId": "",
+    "weiCost": 100000000000000000,
+    "networkId": 1
 }
