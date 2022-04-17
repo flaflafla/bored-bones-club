@@ -205,14 +205,51 @@ const AboutContainer = styled.div`
 const RoadmapContainer = styled.div`
   display: grid;
   grid-template-columns: 600px auto 450px auto;
-  margin-bottom: 64px;
+  margin-bottom: 120px;
 `;
 
 const TeamContainer = styled.div``;
 
 const StoryContainer = styled.div``;
 
-const PreviewContainer = styled.div``;
+const PreviewVideo = styled.video`
+  width: 550px;
+  height: 550px;
+  position: absolute;
+  animation-duration: 10.05s;
+  animation-name: slide;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+
+  @keyframes slide {
+    from {
+      right: -600px;
+    }
+
+    to {
+      right: calc(100% + 50px);
+    }
+  }
+`;
+
+const PreviewText = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 230px;
+  color: #2b161b;
+  font-weight: bold;
+  opacity: 0.1;
+  text-align: center;
+`;
+
+const PreviewContainer = styled.div`
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  height: 600px;
+  max-height: 700px;
+  margin-bottom: 80px;
+`;
 
 const AboutContent = styled.div`
   grid-column: 3;
@@ -229,6 +266,9 @@ const AboutText = styled.div`
   color: #645659;
   font-size: 18px;
   line-height: 23px;
+  :hover {
+    color: #fff;
+  }
 `;
 
 const MissionHeader = styled.h3`
@@ -253,6 +293,18 @@ const MissionSubHeader = styled.div`
   color: #2b161b;
   font-weight: bold;
   margin-bottom: 14px;
+`;
+
+const MissionItem = styled.div`
+  :hover {
+    ${MissionText} {
+      color: #fff;
+    }
+
+    ${MissionSubHeader} {
+      color: #fa036b;
+    }
+  }
 `;
 
 const RoadmapHeader = styled.div`
@@ -281,7 +333,7 @@ const RoadmapSubHeader = styled.div`
   font-size: 26px;
   color: #fa036b;
   font-weight: bold;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 `;
 
 const RoadmapItemHeader = styled.div`
@@ -290,13 +342,27 @@ const RoadmapItemHeader = styled.div`
   color: #2b161b;
   font-weight: bold;
   margin-bottom: 4px;
+  display: inline;
+  margin-right: 8px;
 `;
 
 const RoadmapText = styled.div`
   color: #645659;
   font-size: 16px;
   line-height: 22px;
-  margin-bottom: 18px;
+  display: inline;
+`;
+
+const RoadmapItem = styled.div`
+  margin-bottom: 14px;
+  :hover {
+    ${RoadmapText} {
+      color: #fff;
+    }
+    ${RoadmapItemHeader} {
+      color: #fa036b;
+    }
+  }
 `;
 
 export {
@@ -336,4 +402,8 @@ export {
   RoadmapItemHeader,
   RoadmapText,
   PreviewContainer,
+  PreviewVideo,
+  RoadmapItem,
+  MissionItem,
+  PreviewText,
 };

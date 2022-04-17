@@ -42,6 +42,10 @@ import {
   RoadmapItemHeader,
   RoadmapText,
   PreviewContainer,
+  RoadmapItem,
+  MissionItem,
+  PreviewVideo,
+  PreviewText,
 } from "./styles";
 import abi from "./abi.json";
 import config from "./config.json";
@@ -51,6 +55,13 @@ const MAX_SUPPLY = 500;
 const GAS_LIMIT = "300000"; // TODO
 const MINT_AMOUNT = 1;
 const MAX_AMOUNT_KEY = "0x0";
+
+const PREVIEW_CONFIG = [
+  "/silver.mp4",
+  "/gold.mp4",
+  "/diamond.mp4",
+  "/platinum.mp4",
+];
 
 function App() {
   const [merkleTree, setMerkleTree] = useState(null);
@@ -68,6 +79,7 @@ function App() {
   const [userBalance, setUserBalance] = useState(0);
   const [merkleRoot, setMerkleRoot] = useState(0);
   const [txHash, setTxHash] = useState("");
+  const [previewIndex, setPreviewIndex] = useState(0);
 
   const updateTotalSupply = useCallback(async () => {
     const _totalSupply = await smartContract.methods.totalSupply().call();
@@ -221,6 +233,12 @@ function App() {
     const SmartContractObj = new Web3EthContract(abi, contractAddress);
     setSmartContract(SmartContractObj);
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPreviewIndex((previewIndex + 1) % PREVIEW_CONFIG.length);
+    }, 10 * 1000);
+  }, [previewIndex, setPreviewIndex]);
 
   useEffect(() => {
     if (!account || !merkleTree) return;
@@ -543,104 +561,149 @@ function App() {
             NFT. This includes real-world utility.
           </AboutText>
           <MissionHeader>Our Mission</MissionHeader>
-          <MissionSubHeader>Build Community Together</MissionSubHeader>
-          <MissionText>
-            We aim to build a strong community around the Bored Bones as we
-            slowly bring our figurine based NFT generations forward to the real
-            world with physical 3D prints for community members to own.
-          </MissionText>
-          <MissionSubHeader>Bring NFTs Forward</MissionSubHeader>
-          <MissionText>
-            We have our own flavour to add to the evolution of NFTs as we
-            develop our own metaverse-integrated 3D game with Unreal Engine.
-          </MissionText>
+          <MissionItem>
+            <MissionSubHeader>Build Community Together</MissionSubHeader>
+            <MissionText>
+              We aim to build a strong community around the Bored Bones as we
+              slowly bring our figurine based NFT generations forward to the
+              real world with physical 3D prints for community members to own.
+            </MissionText>
+          </MissionItem>
+          <MissionItem>
+            <MissionSubHeader>Bring NFTs Forward</MissionSubHeader>
+            <MissionText>
+              We have our own flavour to add to the evolution of NFTs as we
+              develop our own metaverse-integrated 3D game with Unreal Engine.
+            </MissionText>
+          </MissionItem>
         </AboutContent>
       </AboutContainer>
       <RoadmapContainer id="roadmap">
         <RoadmapHeader>ROADMAP</RoadmapHeader>
         <RoadmapContent>
           <RoadmapSubHeader>COMPLETED</RoadmapSubHeader>
-          <RoadmapItemHeader>3D figurine prints</RoadmapItemHeader>
-          <RoadmapText>
-            3D figurines of our Bored Bones have been physically printed into
-            real-life figurines in plans for future real-world utility for users
-            to claim their own figures.
-          </RoadmapText>
-          <RoadmapItemHeader>BONE$ currency</RoadmapItemHeader>
-          <RoadmapText>
-            BONE$ currency development commenced for launch after public sales.
-            Owners will earn BONE$ for rewards.
-          </RoadmapText>
-          <RoadmapItemHeader>BBC gamedev</RoadmapItemHeader>
-          <RoadmapText>
-            Early development of the BBC video game begun using Unreal Engine.
-          </RoadmapText>
-          <RoadmapItemHeader>Merch distributor organized</RoadmapItemHeader>
-          <RoadmapText>
-            Merch distributor organised for no delays as well as artist designs
-            pitched.
-          </RoadmapText>
-          <RoadmapItemHeader>Partnerships</RoadmapItemHeader>
-          <RoadmapText>
-            At the dawn of our project we have already locked in multiple
-            partnerships and collaborations with other notable projects.
-          </RoadmapText>
-          <RoadmapItemHeader>Gas-efficient contract</RoadmapItemHeader>
-          <RoadmapText>
-            Our developer has created an amazing gas-efficient contract capable
-            of minting for 0.005 ETH @ 100 gwei.
-          </RoadmapText>
-          <RoadmapItemHeader>Metaverse testing begun</RoadmapItemHeader>
-          <RoadmapText>
-            Testing of metaverse integration into our game project and other
-            pathways.
-          </RoadmapText>
-          <div style={{ height: "32px" }} />
+          <RoadmapItem>
+            <RoadmapItemHeader>3D figurine prints</RoadmapItemHeader>
+            <RoadmapText>
+              3D figurines of our Bored Bones have been physically printed into
+              real-life figurines in plans for future real-world utility for
+              users to claim their own figures.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>BONE$ currency</RoadmapItemHeader>
+            <RoadmapText>
+              BONE$ currency development commenced for launch after public
+              sales. Owners will earn BONE$ for rewards.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>BBC gamedev</RoadmapItemHeader>
+            <RoadmapText>
+              Early development of the BBC video game begun using Unreal Engine.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Merch distributor organized</RoadmapItemHeader>
+            <RoadmapText>
+              Merch distributor organised for no delays as well as artist
+              designs pitched.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Partnerships</RoadmapItemHeader>
+            <RoadmapText>
+              At the dawn of our project we have already locked in multiple
+              partnerships and collaborations with other notable projects.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Gas-efficient contract</RoadmapItemHeader>
+            <RoadmapText>
+              Our developer has created an amazing gas-efficient contract
+              capable of minting for 0.005 ETH @ 100 gwei.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Metaverse testing begun</RoadmapItemHeader>
+            <RoadmapText>
+              Testing of metaverse integration into our game project and other
+              pathways.
+            </RoadmapText>
+          </RoadmapItem>
+          <div style={{ height: "20px" }} />
           <RoadmapSubHeader>SOON</RoadmapSubHeader>
-          <RoadmapItemHeader>Mint</RoadmapItemHeader>
-          <RoadmapText>
-            Mint price: 0.1. We're all about including everyone, instead of
-            pricing out the majority.
-          </RoadmapText>
-          <RoadmapItemHeader>Reveal</RoadmapItemHeader>
-          <RoadmapText>
-            48 hours after public sale, Bored Bones revealed.
-          </RoadmapText>
-          <RoadmapItemHeader>Charity</RoadmapItemHeader>
-          <RoadmapText>Bored Bones 1/1 charity auction.</RoadmapText>
-          <RoadmapItemHeader>Token</RoadmapItemHeader>
-          <RoadmapText>
-            72 hours after sale, BONE$ tokens begin generating.
-          </RoadmapText>
-          <RoadmapItemHeader>Shop</RoadmapItemHeader>
-          <RoadmapText>
-            BONE$ Shop ENABLED, with 3D Bored Bones Club figurines purchasable
-            for BONE$ added to the shop!
-          </RoadmapText>
-          <RoadmapItemHeader>Game preview</RoadmapItemHeader>
-          <RoadmapText>
-            Further PVP game 'THE BORED BATTLE FOR BONE$' development shown to
-            public (metaverse functionality shown as well).
-          </RoadmapText>
-          <RoadmapItemHeader>Merch</RoadmapItemHeader>
-          <RoadmapText>Merch design voting and merch drop.</RoadmapText>
-          <RoadmapItemHeader>Swap tool</RoadmapItemHeader>
-          <RoadmapText>
-            Bored Bones NFT Swap tool begins dev. (Allows you to swap your Bored
-            Bones with a more desirable one of less or equal value from the
-            community wallet. This will cost BONE$).
-          </RoadmapText>
-          <RoadmapItemHeader>Metaverse</RoadmapItemHeader>
-          <RoadmapText>
-            Continuation of BBC game development into the metaverse until
-            release.
-          </RoadmapText>
+          <RoadmapItem>
+            <RoadmapItemHeader>Mint</RoadmapItemHeader>
+            <RoadmapText>
+              Mint price: 0.1. We're all about including everyone, instead of
+              pricing out the majority.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Reveal</RoadmapItemHeader>
+            <RoadmapText>
+              48 hours after public sale, Bored Bones revealed.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Charity</RoadmapItemHeader>
+            <RoadmapText>Bored Bones 1/1 charity auction.</RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Token</RoadmapItemHeader>
+            <RoadmapText>
+              72 hours after sale, BONE$ tokens begin generating.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Shop</RoadmapItemHeader>
+            <RoadmapText>
+              BONE$ Shop ENABLED, with 3D Bored Bones Club figurines purchasable
+              for BONE$ added to the shop!
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Game preview</RoadmapItemHeader>
+            <RoadmapText>
+              Further PVP game 'THE BORED BATTLE FOR BONE$' development shown to
+              public (metaverse functionality shown as well).
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Merch</RoadmapItemHeader>
+            <RoadmapText>Merch design voting and merch drop.</RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Swap tool</RoadmapItemHeader>
+            <RoadmapText>
+              Bored Bones NFT Swap tool begins dev. (Allows you to swap your
+              Bored Bones with a more desirable one of less or equal value from
+              the community wallet. This will cost BONE$).
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Metaverse</RoadmapItemHeader>
+            <RoadmapText>
+              Continuation of BBC game development into the metaverse until
+              release.
+            </RoadmapText>
+          </RoadmapItem>
         </RoadmapContent>
         <RoadmapImageContainer>
           <img src="/roadmap.png" />
         </RoadmapImageContainer>
       </RoadmapContainer>
-      <PreviewContainer></PreviewContainer>
+      <PreviewContainer>
+        <PreviewVideo
+          src={PREVIEW_CONFIG[previewIndex]}
+          autoPlay={true}
+          loop={true}
+          muted={true}
+          playsinline={true}
+        />
+        <PreviewText>BORED BONES</PreviewText>
+      </PreviewContainer>
       <TeamContainer></TeamContainer>
       <StoryContainer></StoryContainer>
     </Container>
