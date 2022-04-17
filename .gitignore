@@ -24,3 +24,5 @@ yarn-error.log*
 
 test_contract
 notes
+
+config.json
