@@ -208,7 +208,13 @@ const RoadmapContainer = styled.div`
   margin-bottom: 120px;
 `;
 
-const TeamContainer = styled.div``;
+const TeamContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-bottom: 80px;
+`;
 
 const StoryContainer = styled.div``;
 
@@ -365,6 +371,76 @@ const RoadmapItem = styled.div`
   }
 `;
 
+const TeamHeader = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 48px;
+  text-align: center;
+  grid-column: 1/-1;
+`;
+
+const StoryHeader = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 48px;
+  text-align: center;
+  grid-column: 1/-1;
+`;
+
+const TeamMemberTitle = styled.div`
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 2px;
+  color: #2b161b;
+`;
+
+const TeamMemberCountry = styled.div`
+  font-size: 18px;
+  color: #2b161b;
+  text-align: center;
+  margin-bottom: 14px;
+`;
+
+const TeamMemberBio = styled.div`
+  padding-right: 18px;
+  padding-left: 18px;
+  font-size: 18px;
+  color: #645659;
+`;
+
+const TeamMemberName = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  color: #645659;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const TeamMember = styled.div`
+  :hover {
+    ${TeamMemberName} {
+      color: #fff;
+    }
+    ${TeamMemberTitle} {
+      color: #fa036b;
+    }
+    ${TeamMemberCountry} {
+      color: #fa036b;
+    }
+    ${TeamMemberBio} {
+      color: #fff;
+    }
+  }
+`;
+
+const TeamMemberImage = styled.img`
+  width: 80%;
+  margin: 0 10% 18px 10%;
+`;
+
 export {
   Container,
   BackgroundImage,
@@ -406,4 +482,12 @@ export {
   RoadmapItem,
   MissionItem,
   PreviewText,
+  TeamHeader,
+  StoryHeader,
+  TeamMember,
+  TeamMemberName,
+  TeamMemberTitle,
+  TeamMemberCountry,
+  TeamMemberBio,
+  TeamMemberImage,
 };

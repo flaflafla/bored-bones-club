@@ -46,6 +46,14 @@ import {
   MissionItem,
   PreviewVideo,
   PreviewText,
+  TeamHeader,
+  StoryHeader,
+  TeamMember,
+  TeamMemberName,
+  TeamMemberTitle,
+  TeamMemberCountry,
+  TeamMemberBio,
+  TeamMemberImage,
 } from "./styles";
 import abi from "./abi.json";
 import config from "./config.json";
@@ -704,8 +712,50 @@ function App() {
         />
         <PreviewText>BORED BONES</PreviewText>
       </PreviewContainer>
-      <TeamContainer></TeamContainer>
-      <StoryContainer></StoryContainer>
+      <TeamContainer id="team">
+        <TeamHeader>TEAM</TeamHeader>
+        <TeamMember>
+          <TeamMemberImage src="/predep.png" />
+          <TeamMemberName>Predepression</TeamMemberName>
+          <TeamMemberTitle>Founder, Software Dev</TeamMemberTitle>
+          <TeamMemberCountry>Australia</TeamMemberCountry>
+          <TeamMemberBio>
+            With a strong IT background and an ever-expanding need to learn
+            more, Predepression delved into the crypto space back in 2017 and
+            entered the NFT space in 2020. Predepression has been the developer
+            for previous projects that have had flawless successful launches,
+            gas efficient contract and zero exploits.
+          </TeamMemberBio>
+        </TeamMember>
+        <TeamMember>
+          <TeamMemberImage src="/boro.png" />
+          <TeamMemberName>Boro</TeamMemberName>
+          <TeamMemberTitle>Founder, Artist</TeamMemberTitle>
+          <TeamMemberCountry>Australia</TeamMemberCountry>
+          <TeamMemberBio>
+            Boro begun his freelance journey in 2015 and pursued a bachelor's
+            degree in information technology. Boro is now bringing his award
+            winning 3D and animation skills into the games industry with Unreal
+            Engine and the metaverse.
+          </TeamMemberBio>
+        </TeamMember>
+        <TeamMember>
+          <TeamMemberImage src="/posty.png" />
+          <TeamMemberName>PostyXBT</TeamMemberName>
+          <TeamMemberTitle>Marketing Advisor</TeamMemberTitle>
+          <TeamMemberCountry>UK</TeamMemberCountry>
+          <TeamMemberBio>
+            His marketing and branding credentials consist of building a
+            personal Twitter audience from 0-75,000 followers via organic
+            content and has helped reputable projects in the crypto space such
+            as Utrust and PrimeXBT in a marketing capacity.
+          </TeamMemberBio>
+        </TeamMember>
+      </TeamContainer>
+      <StoryContainer id="story">
+        <StoryHeader>THE STORY (SO FAR)</StoryHeader>
+        <div>TK</div>
+      </StoryContainer>
     </Container>
   );
 }
