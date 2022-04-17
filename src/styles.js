@@ -16,9 +16,10 @@ const BackgroundImage = styled.div`
   margin-top: -126px;
 `;
 
-const Video = styled.video`
+const AboutVideo = styled.video`
   width: 550px;
   height: 550px;
+  grid-column: 1;
 `;
 
 const Head = styled.h1`
@@ -195,10 +196,113 @@ const Message = styled.div`
   }
 `;
 
+const AboutContainer = styled.div`
+  display: grid;
+  grid-template-columns: 600px auto 450px auto;
+  margin-bottom: 60px;
+`;
+
+const RoadmapContainer = styled.div`
+  display: grid;
+  grid-template-columns: 600px auto 450px auto;
+  margin-bottom: 64px;
+`;
+
+const TeamContainer = styled.div``;
+
+const StoryContainer = styled.div``;
+
+const PreviewContainer = styled.div``;
+
+const AboutContent = styled.div`
+  grid-column: 3;
+`;
+
+const AboutHeader = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 28px;
+`;
+
+const AboutText = styled.div`
+  color: #645659;
+  font-size: 18px;
+  line-height: 23px;
+`;
+
+const MissionHeader = styled.h3`
+  font-family: "Rubik", sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  color: #fa036b;
+  margin-bottom: 16px;
+  margin-top: 34px;
+`;
+
+const MissionText = styled.div`
+  color: #645659;
+  font-size: 16px;
+  line-height: 23px;
+  margin-bottom: 24px;
+`;
+
+const MissionSubHeader = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 20px;
+  color: #2b161b;
+  font-weight: bold;
+  margin-bottom: 14px;
+`;
+
+const RoadmapHeader = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 48px;
+  text-align: center;
+  grid-column: 1/-1;
+`;
+
+const RoadmapImageContainer = styled.div`
+  text-align: center;
+  grid-column: 3;
+`;
+
+const RoadmapContent = styled.div`
+  grid-column: 1;
+  margin-left: 38px;
+  max-height: 1038px;
+  overflow-y: scroll;
+`;
+
+const RoadmapSubHeader = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 26px;
+  color: #fa036b;
+  font-weight: bold;
+  margin-bottom: 18px;
+`;
+
+const RoadmapItemHeader = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 20px;
+  color: #2b161b;
+  font-weight: bold;
+  margin-bottom: 4px;
+`;
+
+const RoadmapText = styled.div`
+  color: #645659;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 18px;
+`;
+
 export {
   Container,
   BackgroundImage,
-  Video,
+  AboutVideo,
   Head,
   Icon,
   SocialIcon,
@@ -215,4 +319,21 @@ export {
   MintButtonTextTop,
   MintButtonTextBottom,
   Message,
+  AboutContainer,
+  RoadmapContainer,
+  TeamContainer,
+  StoryContainer,
+  AboutContent,
+  AboutHeader,
+  AboutText,
+  MissionHeader,
+  MissionText,
+  MissionSubHeader,
+  RoadmapHeader,
+  RoadmapImageContainer,
+  RoadmapContent,
+  RoadmapSubHeader,
+  RoadmapItemHeader,
+  RoadmapText,
+  PreviewContainer,
 };

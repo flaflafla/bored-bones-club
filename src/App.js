@@ -8,7 +8,7 @@ import { getMerkleTree } from "./merkleTree";
 import {
   Container,
   BackgroundImage,
-  Video,
+  AboutVideo,
   Head,
   Icon,
   SocialIcon,
@@ -25,6 +25,23 @@ import {
   MintButtonTextTop,
   MintButtonTextBottom,
   Message,
+  AboutContainer,
+  RoadmapContainer,
+  TeamContainer,
+  StoryContainer,
+  AboutContent,
+  AboutHeader,
+  AboutText,
+  MissionHeader,
+  MissionText,
+  MissionSubHeader,
+  RoadmapHeader,
+  RoadmapImageContainer,
+  RoadmapContent,
+  RoadmapSubHeader,
+  RoadmapItemHeader,
+  RoadmapText,
+  PreviewContainer,
 } from "./styles";
 import abi from "./abi.json";
 import config from "./config.json";
@@ -509,13 +526,123 @@ function App() {
           <div className="underline" />
         </SocialIcon>
       </SocialContainer>
-      <Video
-        src="/vid.mp4"
-        autoPlay={true}
-        loop={true}
-        muted={true}
-        playsinline={true}
-      />
+      <AboutContainer>
+        <AboutVideo
+          src="/vid.mp4"
+          autoPlay={true}
+          loop={true}
+          muted={true}
+          playsinline={true}
+        />
+        <AboutContent id="about">
+          <AboutHeader>ABOUT BORED BONES CLUB</AboutHeader>
+          <AboutText>
+            Bored Bones Club is a collection of 500 ERC-721 NFTs rattling around
+            on the ETH blockchain. The primary goal of Bored Bones Club is to
+            provide stunning, unique art, as well as utility for each individual
+            NFT. This includes real-world utility.
+          </AboutText>
+          <MissionHeader>Our Mission</MissionHeader>
+          <MissionSubHeader>Build Community Together</MissionSubHeader>
+          <MissionText>
+            We aim to build a strong community around the Bored Bones as we
+            slowly bring our figurine based NFT generations forward to the real
+            world with physical 3D prints for community members to own.
+          </MissionText>
+          <MissionSubHeader>Bring NFTs Forward</MissionSubHeader>
+          <MissionText>
+            We have our own flavour to add to the evolution of NFTs as we
+            develop our own metaverse-integrated 3D game with Unreal Engine.
+          </MissionText>
+        </AboutContent>
+      </AboutContainer>
+      <RoadmapContainer id="roadmap">
+        <RoadmapHeader>ROADMAP</RoadmapHeader>
+        <RoadmapContent>
+          <RoadmapSubHeader>COMPLETED</RoadmapSubHeader>
+          <RoadmapItemHeader>3D figurine prints</RoadmapItemHeader>
+          <RoadmapText>
+            3D figurines of our Bored Bones have been physically printed into
+            real-life figurines in plans for future real-world utility for users
+            to claim their own figures.
+          </RoadmapText>
+          <RoadmapItemHeader>BONE$ currency</RoadmapItemHeader>
+          <RoadmapText>
+            BONE$ currency development commenced for launch after public sales.
+            Owners will earn BONE$ for rewards.
+          </RoadmapText>
+          <RoadmapItemHeader>BBC gamedev</RoadmapItemHeader>
+          <RoadmapText>
+            Early development of the BBC video game begun using Unreal Engine.
+          </RoadmapText>
+          <RoadmapItemHeader>Merch distributor organized</RoadmapItemHeader>
+          <RoadmapText>
+            Merch distributor organised for no delays as well as artist designs
+            pitched.
+          </RoadmapText>
+          <RoadmapItemHeader>Partnerships</RoadmapItemHeader>
+          <RoadmapText>
+            At the dawn of our project we have already locked in multiple
+            partnerships and collaborations with other notable projects.
+          </RoadmapText>
+          <RoadmapItemHeader>Gas-efficient contract</RoadmapItemHeader>
+          <RoadmapText>
+            Our developer has created an amazing gas-efficient contract capable
+            of minting for 0.005 ETH @ 100 gwei.
+          </RoadmapText>
+          <RoadmapItemHeader>Metaverse testing begun</RoadmapItemHeader>
+          <RoadmapText>
+            Testing of metaverse integration into our game project and other
+            pathways.
+          </RoadmapText>
+          <div style={{ height: "32px" }} />
+          <RoadmapSubHeader>SOON</RoadmapSubHeader>
+          <RoadmapItemHeader>Mint</RoadmapItemHeader>
+          <RoadmapText>
+            Mint price: 0.1. We're all about including everyone, instead of
+            pricing out the majority.
+          </RoadmapText>
+          <RoadmapItemHeader>Reveal</RoadmapItemHeader>
+          <RoadmapText>
+            48 hours after public sale, Bored Bones revealed.
+          </RoadmapText>
+          <RoadmapItemHeader>Charity</RoadmapItemHeader>
+          <RoadmapText>Bored Bones 1/1 charity auction.</RoadmapText>
+          <RoadmapItemHeader>Token</RoadmapItemHeader>
+          <RoadmapText>
+            72 hours after sale, BONE$ tokens begin generating.
+          </RoadmapText>
+          <RoadmapItemHeader>Shop</RoadmapItemHeader>
+          <RoadmapText>
+            BONE$ Shop ENABLED, with 3D Bored Bones Club figurines purchasable
+            for BONE$ added to the shop!
+          </RoadmapText>
+          <RoadmapItemHeader>Game preview</RoadmapItemHeader>
+          <RoadmapText>
+            Further PVP game 'THE BORED BATTLE FOR BONE$' development shown to
+            public (metaverse functionality shown as well).
+          </RoadmapText>
+          <RoadmapItemHeader>Merch</RoadmapItemHeader>
+          <RoadmapText>Merch design voting and merch drop.</RoadmapText>
+          <RoadmapItemHeader>Swap tool</RoadmapItemHeader>
+          <RoadmapText>
+            Bored Bones NFT Swap tool begins dev. (Allows you to swap your Bored
+            Bones with a more desirable one of less or equal value from the
+            community wallet. This will cost BONE$).
+          </RoadmapText>
+          <RoadmapItemHeader>Metaverse</RoadmapItemHeader>
+          <RoadmapText>
+            Continuation of BBC game development into the metaverse until
+            release.
+          </RoadmapText>
+        </RoadmapContent>
+        <RoadmapImageContainer>
+          <img src="/roadmap.png" />
+        </RoadmapImageContainer>
+      </RoadmapContainer>
+      <PreviewContainer></PreviewContainer>
+      <TeamContainer></TeamContainer>
+      <StoryContainer></StoryContainer>
     </Container>
   );
 }
