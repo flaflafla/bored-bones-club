@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
+import keccak256 from "keccak256";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import "./App.css";
 import { getMerkleTree } from "./merkleTree";
@@ -27,8 +28,15 @@ import {
 import abi from "./abi.json";
 import config from "./config.json";
 
+const MINT_PRICE = 100_000_000_000_000_000; // 0.1Ξ
+const MAX_SUPPLY = 500;
+const GAS_LIMIT = "300000"; // TODO
+const MINT_AMOUNT = 1;
+const MAX_AMOUNT_KEY = "0x0";
+
 function App() {
   const [merkleTree, setMerkleTree] = useState(null);
+  const [proof, setProof] = useState([]);
   const [account, setAccount] = useState("");
   const [smartContract, setSmartContract] = useState(null);
   const [web3, setWeb3] = useState(null);
@@ -36,7 +44,8 @@ function App() {
   const [feedback, setFeedback] = useState("");
   const [minting, setMinting] = useState(false);
   // "early" | "presale" | "public" | "over"
-  const [saleState, setSaleState] = useState("early");
+  const [saleState, setSaleState] = useState("public");
+  const [isWhitelisted, setIsWhitelisted] = useState(false);
 
   useEffect(() => {
     const tree = getMerkleTree();
@@ -44,13 +53,21 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log({ smartContract });
+    if (account && merkleTree) {
+      const whitelistProof = merkleTree.getHexProof(keccak256(`${account}00`));
+      if (whitelistProof.length) {
+        setProof(whitelistProof);
+        setIsWhitelisted(true);
+      }
+    }
+  }, [account, merkleTree, setProof, setIsWhitelisted]);
+
+  useEffect(() => {
+    if (!smartContract) return;
+    debugger;
   }, [smartContract]);
 
   // useEffect(() => {
-  //   const totalSupply = Number(data.totalSupply);
-  //   const merkleRoot = Number(data.merkleRoot);
-
   //   if (totalSupply >= CONFIG.MAX_SUPPLY) {
   //     setSaleState("over");
   //   } else if (data.saleActive) {
@@ -60,7 +77,7 @@ function App() {
   //   } else if (merkleRoot === 0) {
   //     setSaleState("early");
   //   }
-  // }, [CONFIG.MAX_SUPPLY, data.merkleRoot, data.saleActive, data.totalSupply]);
+  // }, [merkleTree, data.saleActive, data.totalSupply]);
 
   const connectMetaMask = useCallback(
     async (e) => {
@@ -69,17 +86,17 @@ function App() {
       const { ethereum } = window;
       const metamaskIsInstalled = ethereum?.isMetaMask;
       if (metamaskIsInstalled) {
-        const { contractAddress } = config;
+        const { contractAddress, networkId } = config;
         Web3EthContract.setProvider(ethereum);
         const _web3 = new Web3(ethereum);
         try {
           const accounts = await ethereum.request({
             method: "eth_requestAccounts",
           });
-          const networkId = await ethereum.request({
+          const _networkId = await ethereum.request({
             method: "net_version",
           });
-          if (Number(networkId) === 1) {
+          if (Number(_networkId) === networkId) {
             const SmartContractObj = new Web3EthContract(abi, contractAddress);
             setAccount(accounts[0]);
             setSmartContract(SmartContractObj);
@@ -107,7 +124,6 @@ function App() {
     [setAccount, setSmartContract, setWeb3, setMintError]
   );
 
-  // TODO: check this works
   const connectWalletConnect = useCallback(
     async (e) => {
       e.preventDefault();
@@ -142,52 +158,48 @@ function App() {
           setMintError("Please change the network to Ethereum mainnet");
         }
       } catch (err) {
+        console.error(err);
         setMintError("Sorry, something went wrong. Please check your wallet.");
       }
     },
     [setAccount, setSmartContract, setWeb3, setMintError]
   );
 
-  // function mintPresale(bytes32[] memory _proof, bytes1 _maxAmountKey, uint256 _mintAmount)
-  // function mint(uint256 _mintAmount)
-
-  // TODO
   const mint = useCallback(() => {
-    // const { weiCost } = config;
-    // // const gasLimit = TODO;
-    // setFeedback(`Minting your Bored Bones ...`);
-    // setMinting(true);
-    // let transaction;
-    // // hardcoded mint amount
-    // const mintAmount = 1;
-    // if (saleState === "presale") {
-    //   const maxAmountKey = "00"; // doesn't matter what it is (?)
-    //   transaction = smartContract.methods.mintPresale(
-    //     proof,
-    //     maxAmountKey,
-    //     mintAmount
-    //   );
-    // } else if (saleState === "public") {
-    //   transaction = smartContract.methods.mint(mintAmount);
-    // }
-    // transaction
-    //   .send({
-    //     gasLimit: String(totalGasLimit),
-    //     to: contractAddress,
-    //     from: account,
-    //     value: weiCost,
-    //   })
-    //   .once("error", (err) => {
-    //     console.error(err);
-    //     setMintError("Sorry, something went wrong. Please try again later.");
-    //     setMinting(false);
-    //   })
-    //   .then((receipt) => {
-    //     console.log(receipt);
-    //     setFeedback(`Minted successfully, welcome to Bored Bones Club!`);
-    //     setMinting(false);
-    //   });
-  }, [setMintError, setMinting, setFeedback]);
+    const { contractAddress } = config;
+    setFeedback("Minting your Bored Bones ...");
+    setMinting(true);
+    let transaction;
+    if (saleState === "presale") {
+      transaction = smartContract.methods.mintPresale(
+        proof,
+        MAX_AMOUNT_KEY,
+        MINT_AMOUNT
+      );
+    } else if (saleState === "public") {
+      transaction = smartContract.methods.mint(MINT_AMOUNT);
+    } else {
+      console.error("could not get transaction type");
+      return;
+    }
+    transaction
+      .send({
+        gasLimit: GAS_LIMIT,
+        to: contractAddress,
+        from: account,
+        value: MINT_PRICE,
+      })
+      .once("error", (err) => {
+        console.error(err);
+        setMintError("Sorry, something went wrong. Please try again later.");
+        setMinting(false);
+      })
+      .then((receipt) => {
+        console.log(receipt);
+        setFeedback("Minted successfully, welcome to Bored Bones Club!");
+        setMinting(false);
+      });
+  }, [setMintError, setMinting, setFeedback, smartContract, proof]);
 
   return (
     <Container>

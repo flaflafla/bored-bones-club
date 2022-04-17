@@ -1,14 +1,6 @@
 {
-    "merkleData": [
-        "0xB8888D95317009a9252C7b610A11089De182A4eD",
-        "0xaC5Dac95450f56381E7a82B4fa30E19e903d17E3",
-        "0x543b511D65445e420eAd39cA4c964d053a3DAb3f",
-        "0x1074652ec5A84E1216e01fd57d57368b8f29397d",
-        "0x33c8474713b7c47a8f749b9679EAC9AbcA7423E8",
-        "0x5e8C8f77d6448ee045ae20639425E4cFa6b7f72a2"
-    ],
+    "merkleData": [],
     "contractAddress": "",
     "infuraId": "",
-    "weiCost": 100000000000000000,
     "networkId": 1
 }
