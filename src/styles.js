@@ -181,6 +181,20 @@ const MintButtonTextBottom = styled.div`
   margin-left: -4px;
 `;
 
+const Message = styled.div`
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 28px;
+
+  & a {
+    text-decoration: none;
+    color: #fa036b;
+  }
+`;
+
 export {
   Container,
   BackgroundImage,
@@ -200,4 +214,5 @@ export {
   MintButton,
   MintButtonTextTop,
   MintButtonTextBottom,
+  Message,
 };
