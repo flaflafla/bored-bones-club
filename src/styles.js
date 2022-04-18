@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+// TODO: breakpoints at 950, 610
+
 const Container = styled.div`
   background-color: #0a0a0a;
   color: #fff;
@@ -7,8 +9,8 @@ const Container = styled.div`
   font-size: 15px;
 `;
 
-const BackgroundImage = styled.div`
-  background-image: url(/background.png);
+const HeroImage = styled.div`
+  background-image: url(/hero.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -20,13 +22,14 @@ const AboutVideo = styled.video`
   width: 550px;
   height: 550px;
   grid-column: 1;
+  padding-left: 30px;
 `;
 
 const Head = styled.h1`
   font-family: "Rubik", sans-serif;
   font-size: 80px;
   position: absolute;
-  top: 120px;
+  top: 80px;
   text-align: center;
   width: calc(100% - 40px);
   padding: 0 20px;
@@ -122,7 +125,7 @@ const MintSection = styled.div`
 
 const Account = styled.div`
   width: 100%;
-  color: #2b161b;
+  color: #fa036b;
   font-size: 21px;
   font-weight: bold;
 
@@ -198,13 +201,13 @@ const Message = styled.div`
 
 const AboutContainer = styled.div`
   display: grid;
-  grid-template-columns: 600px auto 450px auto;
+  grid-template-columns: 580px 1fr;
   margin-bottom: 60px;
 `;
 
 const RoadmapContainer = styled.div`
   display: grid;
-  grid-template-columns: 600px auto 450px auto;
+  grid-template-columns: 1fr 375px 1fr;
   margin-bottom: 120px;
 `;
 
@@ -222,7 +225,7 @@ const PreviewVideo = styled.video`
   width: 550px;
   height: 550px;
   position: absolute;
-  animation-duration: 10.05s;
+  animation-duration: 6s;
   animation-name: slide;
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -230,11 +233,11 @@ const PreviewVideo = styled.video`
 
   @keyframes slide {
     from {
-      right: -600px;
+      right: -625px;
     }
 
     to {
-      right: calc(100% + 50px);
+      right: calc(100% + 75px);
     }
   }
 `;
@@ -258,60 +261,49 @@ const PreviewContainer = styled.div`
 `;
 
 const AboutContent = styled.div`
-  grid-column: 3;
+  grid-column: 2;
+  padding: 0 30px;
 `;
 
 const AboutHeader = styled.div`
   font-family: "Rubik", sans-serif;
+  color: #fa036b;
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 28px;
 `;
 
 const AboutText = styled.div`
-  color: #645659;
   font-size: 18px;
   line-height: 23px;
-  :hover {
-    color: #fff;
-  }
+  color: #f9f9fa;
 `;
 
 const MissionHeader = styled.h3`
   font-family: "Rubik", sans-serif;
   font-size: 26px;
   font-weight: bold;
-  color: #fa036b;
   margin-bottom: 16px;
   margin-top: 34px;
+  color: #f9f9fa;
 `;
 
 const MissionText = styled.div`
-  color: #645659;
   font-size: 16px;
   line-height: 23px;
   margin-bottom: 24px;
+  color: #f9f9fa;
 `;
 
 const MissionSubHeader = styled.div`
   font-family: "Rubik", sans-serif;
   font-size: 20px;
-  color: #2b161b;
+  color: #fa036b;
   font-weight: bold;
   margin-bottom: 14px;
 `;
 
-const MissionItem = styled.div`
-  :hover {
-    ${MissionText} {
-      color: #fff;
-    }
-
-    ${MissionSubHeader} {
-      color: #fa036b;
-    }
-  }
-`;
+const MissionItem = styled.div``;
 
 const RoadmapHeader = styled.div`
   font-family: "Rubik", sans-serif;
@@ -324,28 +316,32 @@ const RoadmapHeader = styled.div`
 
 const RoadmapImageContainer = styled.div`
   text-align: center;
-  grid-column: 3;
+  grid-column: 2;
 `;
 
-const RoadmapContent = styled.div`
+const RoadmapContentLeft = styled.div`
   grid-column: 1;
-  margin-left: 38px;
-  max-height: 1038px;
-  overflow-y: scroll;
+  padding: 0 30px;
+`;
+
+const RoadmapContentRight = styled.div`
+  grid-column: 3;
+  padding: 0 30px;
 `;
 
 const RoadmapSubHeader = styled.div`
   font-family: "Rubik", sans-serif;
   font-size: 26px;
-  color: #fa036b;
   font-weight: bold;
-  margin-bottom: 14px;
+  margin-bottom: 26px;
+  color: #f9f9fa;
+  text-align: center;
 `;
 
 const RoadmapItemHeader = styled.div`
   font-family: "Rubik", sans-serif;
-  font-size: 20px;
-  color: #2b161b;
+  font-size: 16px;
+  color: #fa036b;
   font-weight: bold;
   margin-bottom: 4px;
   display: inline;
@@ -353,22 +349,14 @@ const RoadmapItemHeader = styled.div`
 `;
 
 const RoadmapText = styled.div`
-  color: #645659;
   font-size: 16px;
   line-height: 22px;
   display: inline;
+  color: #f9f9fa;
 `;
 
 const RoadmapItem = styled.div`
-  margin-bottom: 14px;
-  :hover {
-    ${RoadmapText} {
-      color: #fff;
-    }
-    ${RoadmapItemHeader} {
-      color: #fa036b;
-    }
-  }
+  margin-bottom: 20px;
 `;
 
 const TeamHeader = styled.div`
@@ -393,12 +381,12 @@ const TeamMemberTitle = styled.div`
   font-size: 18px;
   text-align: center;
   margin-bottom: 2px;
-  color: #2b161b;
+  color: #fa036b;
 `;
 
 const TeamMemberCountry = styled.div`
   font-size: 18px;
-  color: #2b161b;
+  color: #fa036b;
   text-align: center;
   margin-bottom: 14px;
 `;
@@ -407,43 +395,29 @@ const TeamMemberBio = styled.div`
   padding-right: 18px;
   padding-left: 18px;
   font-size: 18px;
-  color: #645659;
+  color: #f9f9fa;
+  line-height: 24px;
 `;
 
 const TeamMemberName = styled.div`
   font-family: "Rubik", sans-serif;
   font-size: 26px;
   font-weight: bold;
-  color: #645659;
   text-align: center;
   margin-bottom: 20px;
-`;
-
-const TeamMember = styled.div`
-  :hover {
-    ${TeamMemberName} {
-      color: #fff;
-    }
-    ${TeamMemberTitle} {
-      color: #fa036b;
-    }
-    ${TeamMemberCountry} {
-      color: #fa036b;
-    }
-    ${TeamMemberBio} {
-      color: #fff;
-    }
-  }
+  color: #f9f9fa;
 `;
 
 const TeamMemberImage = styled.img`
-  width: 80%;
-  margin: 0 10% 18px 10%;
+  width: calc(100% - 36px);
+  margin: 0 18px 18px 18px;
 `;
+
+const TeamMember = styled.div``;
 
 export {
   Container,
-  BackgroundImage,
+  HeroImage,
   AboutVideo,
   Head,
   Icon,
@@ -473,7 +447,8 @@ export {
   MissionSubHeader,
   RoadmapHeader,
   RoadmapImageContainer,
-  RoadmapContent,
+  RoadmapContentLeft,
+  RoadmapContentRight,
   RoadmapSubHeader,
   RoadmapItemHeader,
   RoadmapText,

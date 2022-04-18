@@ -7,7 +7,7 @@ import "./App.css";
 import { getMerkleTree } from "./merkleTree";
 import {
   Container,
-  BackgroundImage,
+  HeroImage,
   AboutVideo,
   Head,
   Icon,
@@ -37,7 +37,8 @@ import {
   MissionSubHeader,
   RoadmapHeader,
   RoadmapImageContainer,
-  RoadmapContent,
+  RoadmapContentLeft,
+  RoadmapContentRight,
   RoadmapSubHeader,
   RoadmapItemHeader,
   RoadmapText,
@@ -67,8 +68,8 @@ const MAX_AMOUNT_KEY = "0x0";
 const PREVIEW_CONFIG = [
   "/silver.mp4",
   "/gold.mp4",
-  "/diamond.mp4",
   "/platinum.mp4",
+  "/diamond.mp4",
 ];
 
 function App() {
@@ -267,7 +268,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setPreviewIndex((previewIndex + 1) % PREVIEW_CONFIG.length);
-    }, 10 * 1000);
+    }, 6 * 1000);
   }, [previewIndex, setPreviewIndex]);
 
   useEffect(() => {
@@ -552,7 +553,7 @@ function App() {
           </>
         </MintSection>
       )}
-      <BackgroundImage />
+      <HeroImage />
       <SocialContainer>
         <SocialIcon
           href="https://discord.com/invite/boredbonesclub"
@@ -585,7 +586,7 @@ function App() {
       </SocialContainer>
       <AboutContainer>
         <AboutVideo
-          src="/vid.mp4"
+          src="/fire.mp4"
           autoPlay={true}
           loop={true}
           muted={true}
@@ -619,8 +620,8 @@ function App() {
       </AboutContainer>
       <RoadmapContainer id="roadmap">
         <RoadmapHeader>ROADMAP</RoadmapHeader>
-        <RoadmapContent>
-          <RoadmapSubHeader>COMPLETED</RoadmapSubHeader>
+        <RoadmapContentLeft>
+          <RoadmapSubHeader>Completed BEFORE Mint</RoadmapSubHeader>
           <RoadmapItem>
             <RoadmapItemHeader>3D figurine prints</RoadmapItemHeader>
             <RoadmapText>
@@ -637,9 +638,10 @@ function App() {
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
-            <RoadmapItemHeader>BBC gamedev</RoadmapItemHeader>
+            <RoadmapItemHeader>BONE RUN</RoadmapItemHeader>
             <RoadmapText>
-              Early development of the BBC video game begun using Unreal Engine.
+              Full-scale playable video game available to play to earn WL, free
+              mints AND more, released BEFORE mint!
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
@@ -657,33 +659,27 @@ function App() {
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
-            <RoadmapItemHeader>Gas-efficient contract</RoadmapItemHeader>
-            <RoadmapText>
-              Our developer has created an amazing gas-efficient contract
-              capable of minting for 0.005 ETH @ 100 gwei.
-            </RoadmapText>
-          </RoadmapItem>
-          <RoadmapItem>
             <RoadmapItemHeader>Metaverse testing begun</RoadmapItemHeader>
             <RoadmapText>
               Testing of metaverse integration into our game project and other
               pathways.
             </RoadmapText>
           </RoadmapItem>
-          <div style={{ height: "20px" }} />
-          <RoadmapSubHeader>SOON</RoadmapSubHeader>
+        </RoadmapContentLeft>
+        <RoadmapImageContainer>
+          <img src="/roadmap.png" />
+        </RoadmapImageContainer>
+        <RoadmapContentRight>
+          <RoadmapSubHeader>Roadmap v1.0</RoadmapSubHeader>
           <RoadmapItem>
-            <RoadmapItemHeader>Mint</RoadmapItemHeader>
+            <RoadmapItemHeader>Genesis mint</RoadmapItemHeader>
             <RoadmapText>
-              Mint price: 0.1. We're all about including everyone, instead of
-              pricing out the majority.
+              500 Bored Bones at 0.1 ETH | April 22nd at 10pm UTC
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
             <RoadmapItemHeader>Reveal</RoadmapItemHeader>
-            <RoadmapText>
-              48 hours after public sale, Bored Bones revealed.
-            </RoadmapText>
+            <RoadmapText>24-48 hours after sellout</RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
             <RoadmapItemHeader>Charity</RoadmapItemHeader>
@@ -692,14 +688,22 @@ function App() {
           <RoadmapItem>
             <RoadmapItemHeader>Token</RoadmapItemHeader>
             <RoadmapText>
-              72 hours after sale, BONE$ tokens begin generating.
+              48 hours after sale, BONE$ tokens begin generating.
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
-            <RoadmapItemHeader>Shop</RoadmapItemHeader>
+            <RoadmapItemHeader>BONE$ Marketplace</RoadmapItemHeader>
             <RoadmapText>
-              BONE$ Shop ENABLED, with 3D Bored Bones Club figurines purchasable
-              for BONE$ added to the shop!
+              BONE$ Marketplace goes live, including WL spots for up and coming
+              projects, free mints for the second collection, custom-made Bored
+              Bones Club figurines, and MORE!
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Bone run BIG update</RoadmapItemHeader>
+            <RoadmapText>
+              Adding web browser compatibility to allow more people to play and
+              big game updates.
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
@@ -711,7 +715,10 @@ function App() {
           </RoadmapItem>
           <RoadmapItem>
             <RoadmapItemHeader>Merch</RoadmapItemHeader>
-            <RoadmapText>Merch design voting and merch drop.</RoadmapText>
+            <RoadmapText>
+              Merch design vote + merch drop (some genesis holders will get free
+              merch).
+            </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
             <RoadmapItemHeader>Swap tool</RoadmapItemHeader>
@@ -724,14 +731,10 @@ function App() {
           <RoadmapItem>
             <RoadmapItemHeader>Metaverse</RoadmapItemHeader>
             <RoadmapText>
-              Continuation of BBC game development into the metaverse until
-              release.
+              Bored Bones Club dives into the metaverse alongside partners.
             </RoadmapText>
           </RoadmapItem>
-        </RoadmapContent>
-        <RoadmapImageContainer>
-          <img src="/roadmap.png" />
-        </RoadmapImageContainer>
+        </RoadmapContentRight>
       </RoadmapContainer>
       <PreviewContainer>
         <PreviewVideo
