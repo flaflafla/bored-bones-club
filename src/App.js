@@ -82,17 +82,28 @@ function App() {
   const [saleState, setSaleState] = useState(""); // | "early" | "presale" | "public" | "over"
   const [userSaleState, setUserSaleState] = useState(""); // | "__early" | "__wait" | "__waitWhitelisted" | "__premint" | "__mint" | "__minting" | "__mintSuccess" | "__login" | "__over"
   const [isWhitelisted, setIsWhitelisted] = useState(false);
-  const [totalSupply, setTotalSupply] = useState(0);
-  const [saleActive, setSaleActive] = useState(false);
+  const [totalSupply, setTotalSupply] = useState(undefined);
+  const [saleActive, setSaleActive] = useState(undefined);
   const [userBalance, setUserBalance] = useState(0);
-  const [merkleRoot, setMerkleRoot] = useState(0);
+  const [merkleRoot, setMerkleRoot] = useState(undefined);
   const [txHash, setTxHash] = useState("");
   const [previewIndex, setPreviewIndex] = useState(0);
 
   const updateTotalSupply = useCallback(async () => {
-    const _totalSupply = await smartContract.methods.totalSupply().call();
+    let _totalSupply;
+    try {
+      _totalSupply = await smartContract.methods.totalSupply().call();
+    } catch (err) {
+      console.error(err);
+      // something's wrong, likely they're connected to the wrong network.
+      // clear the smart contract, let them connect and diagnose
+      // the error that way
+      setSmartContract(null);
+      setUserSaleState("__login");
+      return;
+    }
     setTotalSupply(Number(_totalSupply));
-  }, [smartContract, setTotalSupply]);
+  }, [smartContract, setTotalSupply, setUserSaleState, setSmartContract]);
 
   const updateSaleActive = useCallback(async () => {
     const _saleActive = await smartContract.methods.saleActive().call();
@@ -124,15 +135,15 @@ function App() {
           const _networkId = await ethereum.request({
             method: "net_version",
           });
+          ethereum.on("accountsChanged", (accounts) => {
+            setMintError("");
+            setAccount(accounts[0]);
+          });
+          ethereum.on("chainChanged", () => {
+            window.location.reload();
+          });
           if (Number(_networkId) === networkId) {
             setAccount(accounts[0]);
-            ethereum.on("accountsChanged", (accounts) => {
-              setMintError("");
-              setAccount(accounts[0]);
-            });
-            ethereum.on("chainChanged", () => {
-              window.location.reload();
-            });
           } else {
             setMintError("Please change the network to Ethereum mainnet");
           }
@@ -146,14 +157,14 @@ function App() {
         setMintError("Please install MetaMask");
       }
     },
-    [setAccount, setSmartContract, setMintError]
+    [setAccount, setMintError]
   );
 
   const connectWalletConnect = useCallback(
     async (e) => {
       e.preventDefault();
       setMintError("");
-      const { infuraId, networkId } = config;
+      const { contractAddress, infuraId, networkId } = config;
       let provider;
       try {
         provider = new WalletConnectProvider({ infuraId });
@@ -164,18 +175,22 @@ function App() {
       }
       Web3EthContract.setProvider(provider);
       const _web3 = new Web3(provider);
+      if (!smartContract) {
+        const SmartContractObj = new Web3EthContract(abi, contractAddress);
+        setSmartContract(SmartContractObj);
+      }
+      provider.on("accountsChanged", (accounts) => {
+        setMintError("");
+        setAccount(accounts[0]);
+      });
+      provider.on("chainChanged", () => {
+        window.location.reload();
+      });
       try {
         const accounts = await _web3.eth.getAccounts();
         const _networkId = await _web3.eth.net.getId();
         if (Number(_networkId) === networkId) {
           setAccount(accounts[0]);
-          provider.on("accountsChanged", (accounts) => {
-            setMintError("");
-            setAccount(accounts[0]);
-          });
-          provider.on("chainChanged", () => {
-            window.location.reload();
-          });
         } else {
           setMintError("Please change the network to Ethereum mainnet");
         }
@@ -184,7 +199,7 @@ function App() {
         setMintError("Sorry, something went wrong. Please check your wallet.");
       }
     },
-    [setAccount, setSmartContract, setMintError]
+    [setAccount, setMintError, smartContract, setSmartContract]
   );
 
   const mint = useCallback(() => {
@@ -237,9 +252,16 @@ function App() {
     setMerkleTree(tree);
     const { contractAddress } = config;
     const { ethereum } = window;
-    Web3EthContract.setProvider(ethereum);
-    const SmartContractObj = new Web3EthContract(abi, contractAddress);
-    setSmartContract(SmartContractObj);
+    if (ethereum) {
+      Web3EthContract.setProvider(ethereum);
+      const SmartContractObj = new Web3EthContract(abi, contractAddress);
+      setSmartContract(SmartContractObj);
+    } else {
+      console.error("ethereum is not defined");
+      // let them login with walletconnect (or be prompted to
+      // install metamask)
+      setUserSaleState("__login");
+    }
   }, []);
 
   useEffect(() => {
@@ -260,9 +282,17 @@ function App() {
   useEffect(() => {
     if (!smartContract) return;
     updateTotalSupply();
-    updateSaleActive();
-    updateMerkleRoot();
   }, [smartContract]);
+
+  useEffect(() => {
+    if (!smartContract || typeof totalSupply === "undefined") return;
+    updateSaleActive();
+  }, [smartContract, totalSupply]);
+
+  useEffect(() => {
+    if (!smartContract || typeof saleActive === "undefined") return;
+    updateMerkleRoot();
+  }, [smartContract, saleActive]);
 
   useEffect(() => {
     if (!smartContract || !account) return;
@@ -274,7 +304,7 @@ function App() {
       setSaleState("over");
     } else if (saleActive) {
       setSaleState("public");
-    } else if (merkleRoot !== 0) {
+    } else if (merkleRoot > 0) {
       setSaleState("presale");
     } else if (merkleRoot === 0) {
       setSaleState("early");
@@ -403,6 +433,7 @@ function App() {
               <ConnectButtonLabel>WalletConnect</ConnectButtonLabel>
               <ConnectButtonImg src={"/walletconnect.svg"} />
             </ConnectButton>
+            {mintError && <MintError>{mintError}</MintError>}
           </>
         </MintSection>
       )}
