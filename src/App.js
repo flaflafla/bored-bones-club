@@ -55,6 +55,7 @@ import {
   TeamMemberCountry,
   TeamMemberBio,
   TeamMemberImage,
+  TeamMemberTwitter,
 } from "./styles";
 import abi from "./abi.json";
 import config from "./config.json";
@@ -641,7 +642,8 @@ function App() {
             <RoadmapItemHeader>BONE RUN</RoadmapItemHeader>
             <RoadmapText>
               Full-scale playable video game available to play to earn WL, free
-              mints AND more, released BEFORE mint!
+              mints AND more, released BEFORE mint! Available to play now, join
+              the Discord to participate!
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
@@ -750,7 +752,16 @@ function App() {
         <TeamHeader>TEAM</TeamHeader>
         <TeamMember>
           <TeamMemberImage src="/predep.png" />
-          <TeamMemberName>Predepression</TeamMemberName>
+          <TeamMemberName>
+            Predepression{" "}
+            <TeamMemberTwitter
+              href="https://twitter.com/Predep7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/twitter.png" width="31px" />
+            </TeamMemberTwitter>
+          </TeamMemberName>
           <TeamMemberTitle>Founder, Software Dev</TeamMemberTitle>
           <TeamMemberCountry>Australia</TeamMemberCountry>
           <TeamMemberBio>
@@ -763,7 +774,16 @@ function App() {
         </TeamMember>
         <TeamMember>
           <TeamMemberImage src="/boro.png" />
-          <TeamMemberName>Boro</TeamMemberName>
+          <TeamMemberName>
+            Boro{" "}
+            <TeamMemberTwitter
+              href="https://twitter.com/borobone"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/twitter.png" width="31px" />
+            </TeamMemberTwitter>
+          </TeamMemberName>
           <TeamMemberTitle>Founder, Artist</TeamMemberTitle>
           <TeamMemberCountry>Australia</TeamMemberCountry>
           <TeamMemberBio>
@@ -775,7 +795,17 @@ function App() {
         </TeamMember>
         <TeamMember>
           <TeamMemberImage src="/posty.png" />
-          <TeamMemberName>PostyXBT</TeamMemberName>
+          <TeamMemberName>
+            PostyXBT{" "}
+            <TeamMemberTwitter
+              href="https://twitter.com/PostyXBT"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/twitter.png" width="31px" />
+            </TeamMemberTwitter>
+          </TeamMemberName>
+
           <TeamMemberTitle>Marketing Advisor</TeamMemberTitle>
           <TeamMemberCountry>UK</TeamMemberCountry>
           <TeamMemberBio>

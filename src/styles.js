@@ -415,6 +415,12 @@ const TeamMemberImage = styled.img`
 
 const TeamMember = styled.div``;
 
+const TeamMemberTwitter = styled.a`
+  img {
+    vertical-align: bottom;
+  }
+`;
+
 export {
   Container,
   HeroImage,
@@ -465,4 +471,5 @@ export {
   TeamMemberCountry,
   TeamMemberBio,
   TeamMemberImage,
+  TeamMemberTwitter,
 };
