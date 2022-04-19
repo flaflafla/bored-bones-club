@@ -812,7 +812,6 @@ function App() {
               <img src="/twitter.png" width="31px" />
             </TeamMemberTwitter>
           </TeamMemberName>
-
           <TeamMemberTitle>Marketing Advisor</TeamMemberTitle>
           <TeamMemberCountry>UK</TeamMemberCountry>
           <TeamMemberBio>

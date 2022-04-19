@@ -23,6 +23,16 @@ const AboutVideo = styled.video`
   height: 550px;
   grid-column: 1;
   padding-left: 30px;
+
+  @media (max-width: 950px) {
+    text-align: center;
+    margin: 0 auto 36px auto;
+    padding: 0;
+  }
+
+  @media (max-width: 650px) {
+    width: 360px;
+  }
 `;
 
 const Head = styled.h1`
@@ -57,12 +67,30 @@ const SocialIcon = styled.a`
   &:hover .underline {
     visibility: visible;
   }
+
+  @media (max-width: 650px) {
+    width: 100px;
+    height: 100px;
+  }
+
+  @media (max-width: 450px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 const SocialContainer = styled.div`
   width: 480px;
   display: flex;
   margin: 30px auto;
+
+  @media (max-width: 650px) {
+    width: 400px;
+  }
+
+  @media (max-width: 450px) {
+    width: 320px;
+  }
 `;
 
 const TopBar = styled.div`
@@ -78,6 +106,11 @@ const TopBarLink = styled.a`
 
   &:hover {
     color: #fa036b;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 10px;
+    margin-top: 10px;
   }
 `;
 
@@ -121,6 +154,14 @@ const MintSection = styled.div`
   top: 300px;
   width: 100%;
   text-align: center;
+
+  @media (max-width: 950px) {
+    top: 400px;
+  }
+
+  @media (max-width: 650px) {
+    top: 460px;
+  }
 `;
 
 const Account = styled.div`
@@ -203,12 +244,20 @@ const AboutContainer = styled.div`
   display: grid;
   grid-template-columns: 580px 1fr;
   margin-bottom: 60px;
+
+  @media (max-width: 950px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const RoadmapContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 375px 1fr;
   margin-bottom: 120px;
+
+  @media (max-width: 950px) {
+    grid-template-rows: auto auto auto;
+  }
 `;
 
 const TeamContainer = styled.div`
@@ -217,12 +266,20 @@ const TeamContainer = styled.div`
   padding-right: 12px;
   padding-left: 12px;
   margin-bottom: 80px;
+
+  @media (max-width: 950px) {
+    margin-bottom: 32px;
+  }
 `;
 
 const StoryContainer = styled.div`
   text-align: center;
   height: 800px;
   position: relative;
+
+  @media (max-width: 950px) {
+    height: 580px;
+  }
 `;
 
 const PreviewVideo = styled.video`
@@ -267,6 +324,10 @@ const PreviewContainer = styled.div`
 const AboutContent = styled.div`
   grid-column: 2;
   padding: 0 30px;
+
+  @media (max-width: 950px) {
+    grid-column: 1;
+  }
 `;
 
 const AboutHeader = styled.div`
@@ -316,29 +377,24 @@ const RoadmapHeader = styled.div`
   margin-bottom: 48px;
   text-align: center;
   grid-column: 1/-1;
+
+  @media (max-width: 950px) {
+    grid-row: 1;
+  }
 `;
 
 const RoadmapImageContainer = styled.div`
   text-align: center;
   grid-column: 2;
+
+  @media (max-width: 950px) {
+    grid-row: 2;
+    margin-bottom: 36px;
+  }
 `;
 
 const RoadmapItem = styled.div`
   margin-bottom: 18px;
-`;
-
-const RoadmapContentLeft = styled.div`
-  grid-column: 1;
-  padding: 0 30px;
-
-  ${RoadmapItem} {
-    margin-bottom: 48px;
-  }
-`;
-
-const RoadmapContentRight = styled.div`
-  grid-column: 3;
-  padding: 0 30px;
 `;
 
 const RoadmapSubHeader = styled.div`
@@ -348,6 +404,43 @@ const RoadmapSubHeader = styled.div`
   margin-bottom: 50px;
   color: #f9f9fa;
   text-align: center;
+`;
+
+const RoadmapContentLeft = styled.div`
+  grid-column: 1;
+  padding: 0 30px;
+
+  ${RoadmapItem} {
+    margin-bottom: 48px;
+  }
+
+  @media (max-width: 950px) {
+    grid-column: 1/-1;
+    grid-row: 3;
+    margin-bottom: 36px;
+
+    ${RoadmapItem} {
+      margin-bottom: 18px;
+    }
+
+    ${RoadmapSubHeader} {
+      margin-bottom: 24px;
+    }
+s  }
+`;
+
+const RoadmapContentRight = styled.div`
+  grid-column: 3;
+  padding: 0 30px;
+
+  @media (max-width: 950px) {
+    grid-column: 1/-1;
+    grid-row: 4;
+
+    ${RoadmapSubHeader} {
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 const RoadmapItemHeader = styled.div`
@@ -405,6 +498,10 @@ const TeamMemberBio = styled.div`
   font-size: 18px;
   color: #f9f9fa;
   line-height: 24px;
+
+  @media (max-width: 950px) {
+    margin-bottom: 48px;
+  }
 `;
 
 const TeamMemberName = styled.div`
@@ -419,9 +516,23 @@ const TeamMemberName = styled.div`
 const TeamMemberImage = styled.img`
   width: calc(100% - 36px);
   margin: 0 18px 18px 18px;
+
+  @media (max-width: 950px) {
+    width: calc(100% - 240px);
+    margin 0 120px 18px 120px;
+  }
+
+  @media (max-width: 650px) {
+    width: calc(100% - 80px);
+    margin 0 40px 18px 40px;
+  }
 `;
 
-const TeamMember = styled.div``;
+const TeamMember = styled.div`
+  @media (max-width: 950px) {
+    grid-column: 1/-1;
+  }
+`;
 
 const TeamMemberTwitter = styled.a`
   img {
@@ -432,10 +543,18 @@ const TeamMemberTwitter = styled.a`
 const SpinningCoinGuyContainer = styled.div`
   padding: 50px 0 120px 0;
   text-align: center;
+
+  @media (max-width: 950px) {
+    padding: 20px 0 80px 0;
+  }
 `;
 
 const SpinningCoinGuyVideo = styled.video`
   width: 600px;
+
+  @media (max-width: 950px) {
+    width: 400px;
+  }
 `;
 
 const PrevNextButton = styled.button`
@@ -454,11 +573,27 @@ const PrevNextButton = styled.button`
   :hover {
     color: #fa036b;
   }
+
+  @media (max-width: 950px) {
+    top: 460px;
+  }
+
+  @media (max-width: 650px) {
+    top: 330px;
+  }
 `;
 
 const StoryVideo = styled.video`
   width: 880px;
   margin: 0 auto 60px auto;
+
+  @media (max-width: 950px) {
+    width: 600px;
+  }
+
+  @media (max-width: 650px) {
+    width: 400px;
+  }
 `;
 
 export {
