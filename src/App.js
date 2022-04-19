@@ -226,6 +226,7 @@ function App() {
       console.error("could not get transaction type");
       return;
     }
+    console.log({ account });
     setMinting(true);
     transaction
       .send({
@@ -254,6 +255,7 @@ function App() {
     saleState,
     setMintSucess,
     setTxHash,
+    account,
   ]);
 
   useEffect(() => {
