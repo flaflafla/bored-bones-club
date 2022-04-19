@@ -581,6 +581,10 @@ const PrevNextButton = styled.button`
   @media (max-width: 650px) {
     top: 330px;
   }
+
+  @media (max-width: 450px) {
+    top: 380px;
+  }
 `;
 
 const StoryVideo = styled.video`
