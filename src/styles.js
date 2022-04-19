@@ -219,7 +219,11 @@ const TeamContainer = styled.div`
   margin-bottom: 80px;
 `;
 
-const StoryContainer = styled.div``;
+const StoryContainer = styled.div`
+  text-align: center;
+  height: 800px;
+  position: relative;
+`;
 
 const PreviewVideo = styled.video`
   width: 550px;
@@ -233,11 +237,11 @@ const PreviewVideo = styled.video`
 
   @keyframes slide {
     from {
-      right: -625px;
+      right: -700px;
     }
 
     to {
-      right: calc(100% + 75px);
+      right: calc(100% + 150px);
     }
   }
 `;
@@ -319,9 +323,17 @@ const RoadmapImageContainer = styled.div`
   grid-column: 2;
 `;
 
+const RoadmapItem = styled.div`
+  margin-bottom: 18px;
+`;
+
 const RoadmapContentLeft = styled.div`
   grid-column: 1;
   padding: 0 30px;
+
+  ${RoadmapItem} {
+    margin-bottom: 48px;
+  }
 `;
 
 const RoadmapContentRight = styled.div`
@@ -333,7 +345,7 @@ const RoadmapSubHeader = styled.div`
   font-family: "Rubik", sans-serif;
   font-size: 26px;
   font-weight: bold;
-  margin-bottom: 26px;
+  margin-bottom: 50px;
   color: #f9f9fa;
   text-align: center;
 `;
@@ -353,10 +365,6 @@ const RoadmapText = styled.div`
   line-height: 22px;
   display: inline;
   color: #f9f9fa;
-`;
-
-const RoadmapItem = styled.div`
-  margin-bottom: 20px;
 `;
 
 const TeamHeader = styled.div`
@@ -421,6 +429,38 @@ const TeamMemberTwitter = styled.a`
   }
 `;
 
+const SpinningCoinGuyContainer = styled.div`
+  padding: 50px 0 120px 0;
+  text-align: center;
+`;
+
+const SpinningCoinGuyVideo = styled.video`
+  width: 600px;
+`;
+
+const PrevNextButton = styled.button`
+  display: block;
+  font-family: "Rubik", sans-serif;
+  color: #fff;
+  font-size: 48px;
+  background-color: #0a0a0a;
+  border: none;
+  position: absolute;
+  top: 630px;
+  left: calc(50% - 50px);
+  width: 100px;
+  cursor: pointer;
+
+  :hover {
+    color: #fa036b;
+  }
+`;
+
+const StoryVideo = styled.video`
+  width: 880px;
+  margin: 0 auto 60px auto;
+`;
+
 export {
   Container,
   HeroImage,
@@ -472,4 +512,8 @@ export {
   TeamMemberBio,
   TeamMemberImage,
   TeamMemberTwitter,
+  SpinningCoinGuyContainer,
+  SpinningCoinGuyVideo,
+  PrevNextButton,
+  StoryVideo,
 };

@@ -56,6 +56,10 @@ import {
   TeamMemberBio,
   TeamMemberImage,
   TeamMemberTwitter,
+  SpinningCoinGuyContainer,
+  SpinningCoinGuyVideo,
+  PrevNextButton,
+  StoryVideo,
 } from "./styles";
 import abi from "./abi.json";
 import config from "./config.json";
@@ -72,6 +76,8 @@ const PREVIEW_CONFIG = [
   "/platinum.mp4",
   "/diamond.mp4",
 ];
+
+const STORY_VIDEO_CONFIG = ["/story-0.mp4", "/story-1.mp4"];
 
 function App() {
   const [merkleTree, setMerkleTree] = useState(null);
@@ -90,6 +96,7 @@ function App() {
   const [merkleRoot, setMerkleRoot] = useState(undefined);
   const [txHash, setTxHash] = useState("");
   const [previewIndex, setPreviewIndex] = useState(0);
+  const [storyVideoIndex, setStoryVideoIndex] = useState(0);
 
   const updateTotalSupply = useCallback(async () => {
     let _totalSupply;
@@ -816,9 +823,35 @@ function App() {
           </TeamMemberBio>
         </TeamMember>
       </TeamContainer>
+      <SpinningCoinGuyContainer>
+        <SpinningCoinGuyVideo
+          src="/spinning-coin-guy.mp4"
+          autoPlay={true}
+          loop={true}
+          muted={true}
+          playsinline={true}
+        />
+      </SpinningCoinGuyContainer>
       <StoryContainer id="story">
         <StoryHeader>THE STORY (SO FAR)</StoryHeader>
-        <div>TK</div>
+        <StoryVideo
+          src={STORY_VIDEO_CONFIG[storyVideoIndex]}
+          autoPlay={false}
+          loop={false}
+          muted={false}
+          playsinline={true}
+          controls={true}
+        />
+        {storyVideoIndex === 0 && (
+          <PrevNextButton onClick={() => setStoryVideoIndex(1)}>
+            {">>>"}
+          </PrevNextButton>
+        )}
+        {storyVideoIndex === 1 && (
+          <PrevNextButton onClick={() => setStoryVideoIndex(0)}>
+            {"<<<"}
+          </PrevNextButton>
+        )}
       </StoryContainer>
     </Container>
   );
