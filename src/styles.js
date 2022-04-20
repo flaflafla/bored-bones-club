@@ -52,17 +52,10 @@ const SocialIcon = styled.a`
   height: 120px;
   text-align: center;
 
-  & .underline {
-    border-radius: 3px;
-    height: 2px;
-    width: 30px;
-    visibility: hidden;
-    background-color: #fa036b;
-    margin: -9px auto;
-  }
-
-  &:hover .underline {
-    visibility: visible;
+  :hover img {
+    border: 2px solid #fa036b;
+    border-radius: 100%;
+    margin-top: -2px;
   }
 
   @media (max-width: 650px) {

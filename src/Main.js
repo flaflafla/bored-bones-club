@@ -104,7 +104,6 @@ const Main = () => {
           rel="noopener noreferrer"
         >
           <img src="/discord.png" width="80px" alt="discord" />
-          <div className="underline" />
         </SocialIcon>
         <SocialIcon
           href="https://www.instagram.com/boredbonesclub/"
@@ -112,11 +111,9 @@ const Main = () => {
           rel="noopener noreferrer"
         >
           <img src="/insta.png" width="80px" alt="instagram" />
-          <div className="underline" />
         </SocialIcon>
         <SocialIcon href="/#" target="_blank" rel="noopener noreferrer">
           <img src="/opensea1.png" width="80px" alt="opensea" />
-          <div className="underline" />
         </SocialIcon>
         <SocialIcon
           href="https://twitter.com/BoredBonesClub"
@@ -124,7 +121,6 @@ const Main = () => {
           rel="noopener noreferrer"
         >
           <img src="/twitter.png" width="80px" alt="twitter" />
-          <div className="underline" />
         </SocialIcon>
       </SocialContainer>
       <AboutContainer>
