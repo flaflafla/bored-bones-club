@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-// TODO: breakpoints at 950, 610
-
 const Container = styled.div`
-  background-color: #0a0a0a;
   color: #fff;
   font-family: "Karla", sans-serif;
   font-size: 15px;
@@ -15,7 +12,7 @@ const HeroImage = styled.div`
   background-size: cover;
   background-position: center;
   min-height: 789px;
-  margin-top: -126px;
+  margin-top: -80px;
 `;
 
 const AboutVideo = styled.video`
@@ -97,6 +94,9 @@ const TopBar = styled.div`
   display: grid;
   grid-template-columns: 120px 1fr auto auto auto auto 18px;
   text-align: center;
+  height: 126px;
+  background-color: #000;
+  position: relative;
 `;
 
 const TopBarLink = styled.a`
@@ -149,30 +149,29 @@ const ConnectButtonImg = styled.img`
   width: 36px;
 `;
 
-const MintSection = styled.div`
-  position: absolute;
-  top: 300px;
-  width: 100%;
-  text-align: center;
-
-  @media (max-width: 950px) {
-    top: 400px;
-  }
-
-  @media (max-width: 650px) {
-    top: 460px;
-  }
-`;
-
 const Account = styled.div`
   width: 100%;
   color: #fa036b;
   font-size: 21px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 30px;
+  max-width: 180px;
+  margin: 80px auto 0 auto;
 
   & a {
     text-decoration: none;
     color: inherit;
+  }
+
+  @media (max-width: 950px) {
+    margin-top: 0;
+  }
+
+  @media (max-width: 650px) {
+    margin-top: 40px;
   }
 `;
 
@@ -191,7 +190,7 @@ const MintButton = styled.button`
   border: 3px solid #fff;
   position: relative;
   cursor: pointer;
-  margin: 20px auto 0 auto;
+  margin: 20px auto 26px auto;
 
   &:hover {
     border-color: #fa036b;
@@ -540,23 +539,6 @@ const TeamMemberTwitter = styled.a`
   }
 `;
 
-const SpinningCoinGuyContainer = styled.div`
-  padding: 50px 0 120px 0;
-  text-align: center;
-
-  @media (max-width: 950px) {
-    padding: 20px 0 80px 0;
-  }
-`;
-
-const SpinningCoinGuyVideo = styled.video`
-  width: 600px;
-
-  @media (max-width: 950px) {
-    width: 400px;
-  }
-`;
-
 const PrevNextButton = styled.button`
   display: block;
   font-family: "Rubik", sans-serif;
@@ -600,8 +582,99 @@ const StoryVideo = styled.video`
   }
 `;
 
+const MintOuterContainer = styled.div`
+  color: #fff;
+  font-family: "Karla", sans-serif;
+  font-size: 15px;
+  padding-bottom: 40px;
+`;
+
+const MintContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  text-align: center;
+
+  @media (max-width: 950px) {
+    grid-template-columns: 300px 1fr;
+    max-width: 750px;
+  }
+
+  @media (max-width: 650px) {
+    display: block;
+  }
+`;
+
+const SpinningCoinGuyVideo = styled.video`
+  width: 500px;
+  grid-column: 1;
+
+  @media (max-width: 950px) {
+    width: 360px;
+  }
+
+  @media (max-width: 650px) {
+    grid-column: 1/-1;
+    margin: 0 auto;
+  }
+`;
+
+const MintHead = styled.h1`
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+  width: calc(100% - 40px);
+  padding: 0 20px;
+  font-size: 60px;
+  margin-top: 0;
+`;
+
+const MintSection = styled.div`
+  grid-column: 2;
+  text-align: center;
+`;
+
+const MintSubHeader = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: #fa036b;
+  text-align: center;
+  margin-top: 60px;
+  padding: 0 20px;
+
+  @media (max-width: 950px) {
+    margin-top: 30px;
+    font-size: 30px;
+  }
+`;
+
+const MintLink = styled.div`
+  font-size: 62px;
+  font-weight: bold;
+  font-family: "Rubik", sans-serif;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 340px;
+
+  a {
+    margin: 0 auto;
+    text-decoration: none;
+    color: #fa036b;
+    cursor: pointer;
+    background-color: #000;
+    border-radius: 12px;
+    border: 3px solid #fa036b;
+    padding: 4px 45px;
+  }
+`;
+
 export {
   Container,
+  MintContainer,
+  MintHead,
   HeroImage,
   AboutVideo,
   Head,
@@ -651,8 +724,10 @@ export {
   TeamMemberBio,
   TeamMemberImage,
   TeamMemberTwitter,
-  SpinningCoinGuyContainer,
   SpinningCoinGuyVideo,
   PrevNextButton,
   StoryVideo,
+  MintOuterContainer,
+  MintSubHeader,
+  MintLink,
 };
