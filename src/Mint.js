@@ -136,10 +136,8 @@ const Mint = () => {
       }
       Web3EthContract.setProvider(provider);
       const _web3 = new Web3(provider);
-      if (!smartContract) {
-        const SmartContractObj = new Web3EthContract(abi, contractAddress);
-        setSmartContract(SmartContractObj);
-      }
+      const SmartContractObj = new Web3EthContract(abi, contractAddress);
+      setSmartContract(SmartContractObj);
       provider.on("accountsChanged", (accounts) => {
         setMintError("");
         setAccount(accounts[0]);
@@ -160,7 +158,7 @@ const Mint = () => {
         setMintError("Sorry, something went wrong. Please check your wallet.");
       }
     },
-    [setAccount, setMintError, smartContract, setSmartContract]
+    [setAccount, setMintError, setSmartContract]
   );
 
   const mint = useCallback(() => {
