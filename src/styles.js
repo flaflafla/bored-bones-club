@@ -151,7 +151,6 @@ const ConnectButtonImg = styled.img`
 
 const Account = styled.div`
   width: 100%;
-  color: #fa036b;
   font-size: 21px;
   font-weight: bold;
   white-space: nowrap;
@@ -159,7 +158,7 @@ const Account = styled.div`
   text-overflow: ellipsis;
   padding: 0 30px;
   max-width: 180px;
-  margin: 80px auto 0 auto;
+  margin: 40px auto 0 auto;
 
   & a {
     text-decoration: none;
@@ -177,52 +176,28 @@ const Account = styled.div`
 
 const MintError = styled.div`
   color: #fa036b;
-  width: 100%;
+  width: calc(100% - 56px);
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  margin-top: 12px;
+  margin-top: 32px;
+  padding: 0 28px;
 `;
 
 const MintButton = styled.button`
   background-color: #000;
-  border-radius: 10000px;
-  border: 3px solid #fff;
+  border: none;
   position: relative;
   cursor: pointer;
-  margin: 20px auto 26px auto;
+  margin: 36px auto 0 auto;
+  border-radius: 100%;
+  width: 230px;
+  height: 230px;
+  padding: 10px;
 
-  &:hover {
-    border-color: #fa036b;
-
-    div {
-      color: #fa036b;
-    }
+  :hover {
+    border: 4px solid #fa036b;
   }
-`;
-
-const MintButtonTextTop = styled.div`
-  font-family: "Rubik", sans-serif;
-  position: absolute;
-  font-size: 32px;
-  font-weight: bold;
-  color: #fff;
-  top: 25px;
-  width: 100%;
-  text-align: center;
-  margin-left: -4px;
-`;
-
-const MintButtonTextBottom = styled.div`
-  font-family: "Rubik", sans-serif;
-  position: absolute;
-  font-size: 32px;
-  font-weight: bold;
-  top: 145px;
-  width: 100%;
-  color: #fff;
-  text-align: center;
-  margin-left: -4px;
 `;
 
 const Message = styled.div`
@@ -231,7 +206,7 @@ const Message = styled.div`
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  margin-top: 28px;
+  margin-top: 68px;
 
   & a {
     text-decoration: none;
@@ -273,7 +248,7 @@ const TeamContainer = styled.div`
 
 const StoryContainer = styled.div`
   text-align: center;
-  height: 800px;
+  height: 600px;
   position: relative;
 
   @media (max-width: 950px) {
@@ -288,7 +263,6 @@ const PreviewVideo = styled.video`
   animation-duration: 6s;
   animation-name: slide;
   animation-iteration-count: infinite;
-  animation-direction: alternate;
   animation-timing-function: linear;
 
   @keyframes slide {
@@ -393,7 +367,7 @@ const RoadmapImageContainer = styled.div`
 `;
 
 const RoadmapItem = styled.div`
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 `;
 
 const RoadmapSubHeader = styled.div`
@@ -410,7 +384,7 @@ const RoadmapContentLeft = styled.div`
   padding: 0 30px;
 
   ${RoadmapItem} {
-    margin-bottom: 48px;
+    margin-bottom: 56px;
   }
 
   @media (max-width: 950px) {
@@ -539,47 +513,34 @@ const TeamMemberTwitter = styled.a`
   }
 `;
 
-const PrevNextButton = styled.button`
-  display: block;
-  font-family: "Rubik", sans-serif;
-  color: #fff;
-  font-size: 48px;
-  background-color: #0a0a0a;
-  border: none;
+const StoryVideoButtons = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 80px 1fr;
+  width: 100%;
   position: absolute;
-  top: 630px;
-  left: calc(50% - 50px);
-  width: 100px;
-  cursor: pointer;
-
-  :hover {
-    color: #fa036b;
-  }
-
-  @media (max-width: 950px) {
-    top: 460px;
-  }
-
-  @media (max-width: 650px) {
-    top: 330px;
-  }
-
-  @media (max-width: 450px) {
-    top: 380px;
-  }
+  top: 450px;
 `;
 
-const StoryVideo = styled.video`
-  width: 880px;
+const StoryVideoButton = styled.button`
+  background-color: #000;
+  border: none;
+  ${({ gridColumn }) => `grid-column: ${gridColumn};`}
+  color: #fff;
+  ${({ disabled }) =>
+    disabled
+      ? "opacity: 0.3;"
+      : `
+    cursor: pointer;
+    :hover {
+      color: #fa036b;
+    }
+  `}
+  font-family: "Rubik", sans-serif;
+  font-size: 26px;
+`;
+
+const StoryVideo = styled.iframe`
   margin: 0 auto 60px auto;
-
-  @media (max-width: 950px) {
-    width: 600px;
-  }
-
-  @media (max-width: 650px) {
-    width: 400px;
-  }
 `;
 
 const MintOuterContainer = styled.div`
@@ -632,6 +593,10 @@ const MintHead = styled.h1`
 const MintSection = styled.div`
   grid-column: 2;
   text-align: center;
+
+  @media (max-width: 650px) {
+    height: 400px;
+  }
 `;
 
 const MintSubHeader = styled.div`
@@ -641,7 +606,7 @@ const MintSubHeader = styled.div`
   margin-bottom: 50px;
   color: #fa036b;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 28px;
   padding: 0 20px;
 
   @media (max-width: 950px) {
@@ -651,32 +616,51 @@ const MintSubHeader = styled.div`
 `;
 
 const MintLink = styled.div`
-  font-size: 62px;
-  font-weight: bold;
-  font-family: "Rubik", sans-serif;
   position: absolute;
   width: 100%;
   text-align: center;
   top: 340px;
 
-  a {
+  img {
     margin: 0 auto;
     text-decoration: none;
-    color: #fa036b;
     cursor: pointer;
     background-color: #000;
-    border-radius: 12px;
-    border: 3px solid #fa036b;
-    padding: 4px 45px;
+    width: 320px;
+    border-radius: 30px;
+    padding: 16px;
   }
 
   @media (max-width: 950px) {
-    font-size: 40px;
+    top: 370px;
+
+    img {
+      width: 260px;
+    }
   }
 
   @media (max-width: 650px) {
     top: 450px;
-    font-size: 28px;
+
+    img {
+      width: 200px;
+    }
+  }
+
+  img:hover {
+    border: 4px solid #fa036b;
+    margin-top: -4px;
+  }
+`;
+
+const Counter = styled.div`
+  font-family: "Rubik", sans-serif;
+  font-size: 28px;
+  margin-bottom: 14px;
+  margin-top: 12px;
+
+  @media (max-width: 650px) {
+    margin-top: 60px;
   }
 `;
 
@@ -699,8 +683,6 @@ export {
   Account,
   MintError,
   MintButton,
-  MintButtonTextTop,
-  MintButtonTextBottom,
   Message,
   AboutContainer,
   RoadmapContainer,
@@ -734,9 +716,11 @@ export {
   TeamMemberImage,
   TeamMemberTwitter,
   SpinningCoinGuyVideo,
-  PrevNextButton,
+  StoryVideoButton,
+  StoryVideoButtons,
   StoryVideo,
   MintOuterContainer,
   MintSubHeader,
   MintLink,
+  Counter,
 };

@@ -41,7 +41,8 @@ import {
   TeamMemberBio,
   TeamMemberImage,
   TeamMemberTwitter,
-  PrevNextButton,
+  StoryVideoButton,
+  StoryVideoButtons,
   StoryVideo,
   MintLink,
 } from "./styles";
@@ -53,7 +54,11 @@ const PREVIEW_CONFIG = [
   "/diamond.mp4",
 ];
 
-const STORY_VIDEO_CONFIG = ["/story-0.mp4", "/story-1.mp4"];
+const STORY_VIDEO_CONFIG = [
+  "https://www.youtube.com/embed/Ef12xk6UNhk",
+  "https://www.youtube.com/embed/304qRKrN9Q4",
+  "https://www.youtube.com/embed/wtCCdJ-bTJU",
+];
 
 const Main = () => {
   const [previewIndex, setPreviewIndex] = useState(0);
@@ -88,7 +93,9 @@ const Main = () => {
       <Head>Bored Bones Club</Head>
       <HeroImage />
       <MintLink>
-        <a href="/mint">MINT NOW</a>
+        <a href="/mint">
+          <img src="/mint-now-wide.png" alt="mint now" />
+        </a>
       </MintLink>
       <SocialContainer>
         <SocialIcon
@@ -108,7 +115,7 @@ const Main = () => {
           <div className="underline" />
         </SocialIcon>
         <SocialIcon href="/#" target="_blank" rel="noopener noreferrer">
-          <img src="/opensea.png" width="80px" alt="opensea" />
+          <img src="/opensea1.png" width="80px" alt="opensea" />
           <div className="underline" />
         </SocialIcon>
         <SocialIcon
@@ -211,12 +218,9 @@ const Main = () => {
           <RoadmapItem>
             <RoadmapItemHeader>Genesis mint</RoadmapItemHeader>
             <RoadmapText>
-              500 Bored Bones at 0.1 ETH | April 22nd at 10pm UTC
+              500 Bored Bones at 0.1 ETH | April 22nd at 10pm UTC. Reveal 24-48
+              hours after sellout.
             </RoadmapText>
-          </RoadmapItem>
-          <RoadmapItem>
-            <RoadmapItemHeader>Reveal</RoadmapItemHeader>
-            <RoadmapText>24-48 hours after sellout</RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
             <RoadmapItemHeader>Charity</RoadmapItemHeader>
@@ -237,17 +241,10 @@ const Main = () => {
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
-            <RoadmapItemHeader>Bone run BIG update</RoadmapItemHeader>
+            <RoadmapItemHeader>Multiplayer Bone Run</RoadmapItemHeader>
             <RoadmapText>
-              Adding web browser compatibility to allow more people to play and
-              big game updates.
-            </RoadmapText>
-          </RoadmapItem>
-          <RoadmapItem>
-            <RoadmapItemHeader>Game preview</RoadmapItemHeader>
-            <RoadmapText>
-              Further PVP game 'THE BORED BATTLE FOR BONE$' development shown to
-              public (metaverse functionality shown as well).
+              Multiplayer functionality added to Bone Run. Compete against other
+              people live and risk your BONE$ for glory!
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
@@ -260,15 +257,43 @@ const Main = () => {
           <RoadmapItem>
             <RoadmapItemHeader>Swap tool</RoadmapItemHeader>
             <RoadmapText>
-              Bored Bones NFT Swap tool begins dev. (Allows you to swap your
-              Bored Bones with a more desirable one of less or equal value from
-              the community wallet. This will cost BONE$).
+              For now, we'd like to keep this a bit quiet. This is a massive
+              piece of development and will make a difference in the space. More
+              to come soon.
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>
+              <s>REDACTED AIRDROP</s>
+            </RoadmapItemHeader>
+            <RoadmapText>
+              We'll have an airdrop for bored bones club holders ... but what
+              could it be?
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Bored Bones Club Mini-Series</RoadmapItemHeader>
+            <RoadmapText>
+              We'll be making a full-blown Bored Bones Club mini-series
+              including a bunch of characters voted by the community AS WELL as
+              characters from our partner communities. We're excited to further
+              bring our Bored Bones to life!
+            </RoadmapText>
+          </RoadmapItem>
+          <RoadmapItem>
+            <RoadmapItemHeader>Project Accelerator Program</RoadmapItemHeader>
+            <RoadmapText>
+              Inspired by Voltura's web3 accelerator, we've decided to form a
+              dedicated fund from our own pockets, which we will use to support
+              founders with innovative ideas. Rather than gatekeeping each
+              other, communities need to work TOGETHER to grow in this space.
             </RoadmapText>
           </RoadmapItem>
           <RoadmapItem>
             <RoadmapItemHeader>Metaverse</RoadmapItemHeader>
             <RoadmapText>
-              Bored Bones Club dives into the metaverse alongside partners.
+              Bored Bones Club fully integrated into 'The DEADLAND$.' What
+              mysteries lie beyond...
             </RoadmapText>
           </RoadmapItem>
         </RoadmapContentRight>
@@ -353,23 +378,37 @@ const Main = () => {
       <StoryContainer id="story">
         <StoryHeader>THE STORY (SO FAR)</StoryHeader>
         <StoryVideo
+          width="560"
+          height="315"
           src={STORY_VIDEO_CONFIG[storyVideoIndex]}
-          autoPlay={false}
-          loop={false}
-          muted={false}
-          playsinline={true}
-          controls={true}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
         />
-        {storyVideoIndex === 0 && (
-          <PrevNextButton onClick={() => setStoryVideoIndex(1)}>
-            {">>>"}
-          </PrevNextButton>
-        )}
-        {storyVideoIndex === 1 && (
-          <PrevNextButton onClick={() => setStoryVideoIndex(0)}>
-            {"<<<"}
-          </PrevNextButton>
-        )}
+        <StoryVideoButtons>
+          <StoryVideoButton
+            disabled={storyVideoIndex === 0}
+            onClick={() => setStoryVideoIndex(0)}
+            gridColumn={2}
+          >
+            1
+          </StoryVideoButton>
+          <StoryVideoButton
+            disabled={storyVideoIndex === 1}
+            onClick={() => setStoryVideoIndex(1)}
+            gridColumn={3}
+          >
+            2
+          </StoryVideoButton>
+          <StoryVideoButton
+            disabled={storyVideoIndex === 2}
+            onClick={() => setStoryVideoIndex(2)}
+            gridColumn={4}
+          >
+            3
+          </StoryVideoButton>
+        </StoryVideoButtons>
       </StoryContainer>
     </Container>
   );

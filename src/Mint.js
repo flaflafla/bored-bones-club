@@ -18,12 +18,11 @@ import {
   Account,
   MintError,
   MintButton,
-  MintButtonTextTop,
-  MintButtonTextBottom,
   Message,
   SpinningCoinGuyVideo,
   MintOuterContainer,
   MintSubHeader,
+  Counter,
 } from "./styles";
 import abi from "./abi.json";
 import config from "./config.json";
@@ -316,9 +315,11 @@ const Mint = () => {
   return (
     <MintOuterContainer>
       <TopBar>
-        <Icon>
-          <img src="/icon.png" width={"100%"} alt="" />
-        </Icon>
+        <a href="/">
+          <Icon>
+            <img src="/icon.png" width={"100%"} alt="" />
+          </Icon>
+        </a>
         <div />
         <TopBarLink href="/">
           <h3>MAIN</h3>
@@ -333,166 +334,170 @@ const Mint = () => {
           muted={true}
           playsinline={true}
         />
-        {!userSaleState && null}
-        {userSaleState === "__minting" && (
-          <MintSection>
-            <Account>
-              <a
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {account}
-              </a>
-            </Account>
-            <Message>Minting in progress ...</Message>
-          </MintSection>
-        )}
-        {userSaleState === "__mintSuccess" && (
-          <MintSection>
-            <Account>
-              <a
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {account}
-              </a>
-            </Account>
-            <Message>
-              Success!{" "}
-              {txHash && (
+        <MintSection>
+          <Counter>
+            {typeof totalSupply !== "undefined" ? totalSupply : "?"} /{" "}
+            {MAX_SUPPLY}
+          </Counter>
+          {userSaleState === "__minting" && (
+            <>
+              <Account>
                 <a
-                  href={`https://etherscan.io/tx/${txHash}`}
+                  href={`https://etherscan.io/address/${account}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Check it on Etherscan
+                  {account}
                 </a>
-              )}
-            </Message>
-          </MintSection>
-        )}
-        {userSaleState === "__login" && (
-          <MintSection>
-            <MintSubHeader>Connect Your Wallet to Mint</MintSubHeader>
-            <ConnectButton onClick={connectMetaMask} paddingLeftRight={"26px"}>
-              <ConnectButtonLabel>MetaMask</ConnectButtonLabel>
-              <ConnectButtonImg src={"/metamask.svg"} alt="" />
-            </ConnectButton>
-            <ConnectButton
-              onClick={connectWalletConnect}
-              paddingLeftRight={"26px"}
-            >
-              <ConnectButtonLabel>WalletConnect</ConnectButtonLabel>
-              <ConnectButtonImg src={"/walletconnect.svg"} alt="" />
-            </ConnectButton>
-            {mintError && <MintError>{mintError}</MintError>}
-          </MintSection>
-        )}
-        {userSaleState === "__early" && (
-          <MintSection>
-            <Account>
-              <a
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              </Account>
+              <Message>Minting in progress ...</Message>
+            </>
+          )}
+          {userSaleState === "__mintSuccess" && (
+            <>
+              <Account>
+                <a
+                  href={`https://etherscan.io/address/${account}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {account}
+                </a>
+              </Account>
+              <Message>
+                Success!{" "}
+                {txHash && (
+                  <a
+                    href={`https://etherscan.io/tx/${txHash}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Check it on Etherscan
+                  </a>
+                )}
+              </Message>
+            </>
+          )}
+          {userSaleState === "__login" && (
+            <>
+              <MintSubHeader>Connect Your Wallet to Mint</MintSubHeader>
+              <ConnectButton
+                onClick={connectMetaMask}
+                paddingLeftRight={"26px"}
               >
-                {account}
-              </a>
-            </Account>
-            <Message>Get pumped, Bored Bones Club is minting SOON.</Message>
-          </MintSection>
-        )}
-        {userSaleState === "__wait" && (
-          <MintSection>
-            <Account>
-              <a
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                <ConnectButtonLabel>MetaMask</ConnectButtonLabel>
+                <ConnectButtonImg src={"/metamask1.svg"} alt="" />
+              </ConnectButton>
+              <ConnectButton
+                onClick={connectWalletConnect}
+                paddingLeftRight={"26px"}
               >
-                {account}
-              </a>
-            </Account>
-            <Message>Get pumped, the public mint is SOON.</Message>
-          </MintSection>
-        )}
-        {userSaleState === "__waitWhitelisted" && (
-          <MintSection>
-            <Account>
-              <a
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {account}
-              </a>
-            </Account>
-            <Message>
-              You've already used your whitelist mint, but no worries, the
-              public mint is SOON.
-            </Message>
-          </MintSection>
-        )}
-        {userSaleState === "__premint" && (
-          <MintSection>
-            <Account>
-              <a
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {account}
-              </a>
-            </Account>
-            <MintButton onClick={mint}>
-              <MintButtonTextTop>MINT</MintButtonTextTop>
-              <MintButtonTextBottom>NOW</MintButtonTextBottom>
-              <img src="/icon.png" width="200px" alt="mint" />
-            </MintButton>
-            <Message>(Congrats on copping that whitelist!)</Message>
-            {mintError && <MintError>{mintError}</MintError>}
-          </MintSection>
-        )}
-        {userSaleState === "__mint" && (
-          <MintSection>
-            <Account>
-              <a
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {account}
-              </a>
-            </Account>
-            <MintButton onClick={mint}>
-              <MintButtonTextTop>MINT</MintButtonTextTop>
-              <MintButtonTextBottom>NOW</MintButtonTextBottom>
-              <img src="/icon.png" width="200px" alt="mint" />
-            </MintButton>
-            {mintError && <MintError>{mintError}</MintError>}
-          </MintSection>
-        )}
-        {userSaleState === "__over" && (
-          <MintSection>
-            <Account>
-              <a
-                href={`https://etherscan.io/address/${account}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {account}
-              </a>
-            </Account>
-            <Message>
-              Bored Bones Club is minted out! Check the collection out on{" "}
-              <a href={"#"} target="_blank" rel="noopener noreferrer">
-                OpenSea
-              </a>
-            </Message>
-          </MintSection>
-        )}
+                <ConnectButtonLabel>WalletConnect</ConnectButtonLabel>
+                <ConnectButtonImg src={"/walletconnect.svg"} alt="" />
+              </ConnectButton>
+              {mintError && <MintError>{mintError}</MintError>}
+            </>
+          )}
+          {userSaleState === "__early" && (
+            <>
+              <Account>
+                <a
+                  href={`https://etherscan.io/address/${account}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {account}
+                </a>
+              </Account>
+              <Message>Get pumped, Bored Bones Club is minting SOON.</Message>
+            </>
+          )}
+          {userSaleState === "__wait" && (
+            <>
+              <Account>
+                <a
+                  href={`https://etherscan.io/address/${account}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {account}
+                </a>
+              </Account>
+              <Message>Get pumped, the public mint is SOON.</Message>
+            </>
+          )}
+          {userSaleState === "__waitWhitelisted" && (
+            <>
+              <Account>
+                <a
+                  href={`https://etherscan.io/address/${account}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {account}
+                </a>
+              </Account>
+              <Message>
+                You've already used your whitelist mint, but no worries, the
+                public mint is SOON.
+              </Message>
+            </>
+          )}
+          {userSaleState === "__premint" && (
+            <>
+              <Account>
+                <a
+                  href={`https://etherscan.io/address/${account}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {account}
+                </a>
+              </Account>
+              <MintButton onClick={mint}>
+                <img src="/mint-now.png" width="200px" alt="mint now" />
+              </MintButton>
+              <Message>(Congrats on copping that whitelist!)</Message>
+              {mintError && <MintError>{mintError}</MintError>}
+            </>
+          )}
+          {userSaleState === "__mint" && (
+            <>
+              <Account>
+                <a
+                  href={`https://etherscan.io/address/${account}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {account}
+                </a>
+              </Account>
+              <MintButton onClick={mint}>
+                <img src="/mint-now.png" width="200px" alt="mint now" />
+              </MintButton>
+              {mintError && <MintError>{mintError}</MintError>}
+            </>
+          )}
+          {userSaleState === "__over" && (
+            <>
+              <Account>
+                <a
+                  href={`https://etherscan.io/address/${account}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {account}
+                </a>
+              </Account>
+              <Message>
+                Bored Bones Club is minted out! Check the collection out on{" "}
+                <a href={"#"} target="_blank" rel="noopener noreferrer">
+                  OpenSea
+                </a>
+              </Message>
+            </>
+          )}
+        </MintSection>
       </MintContainer>
     </MintOuterContainer>
   );
