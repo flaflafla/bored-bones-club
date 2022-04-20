@@ -669,6 +669,15 @@ const MintLink = styled.div`
     border: 3px solid #fa036b;
     padding: 4px 45px;
   }
+
+  @media (max-width: 950px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 650px) {
+    top: 450px;
+    font-size: 28px;
+  }
 `;
 
 export {
