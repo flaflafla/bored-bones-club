@@ -448,7 +448,16 @@ const Main = () => {
         <div />
         <TeamMember>
           <TeamMemberImage src="/fla.png" alt="fla" />
-          <TeamMemberName>fla</TeamMemberName>
+          <TeamMemberName>
+            fla{" "}
+            <TeamMemberTwitter
+              href="https://twitter.com/fla63551709"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/twitter.png" width="31px" alt="fla-twitter" />
+            </TeamMemberTwitter>
+          </TeamMemberName>
           <TeamMemberTitle>Frontend dev</TeamMemberTitle>
           <TeamMemberCountry />
           <TeamMemberBio>
