@@ -113,7 +113,11 @@ const Main = () => {
         >
           <img src="/insta.png" width="80px" alt="instagram" />
         </SocialIcon>
-        <SocialIcon href="/#" target="_blank" rel="noopener noreferrer">
+        <SocialIcon
+          href="https://opensea.io/collection/bored-bones-genesis"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src="/opensea1.png" width="80px" alt="opensea" />
         </SocialIcon>
         <SocialIcon

@@ -47,7 +47,7 @@ const Mint = () => {
   const [saleActive, setSaleActive] = useState(undefined);
   const [userBalance, setUserBalance] = useState(0);
   const [merkleRoot, setMerkleRoot] = useState(undefined);
-  const [txHash, setTxHash] = useState("");
+  const [tokenId, setTokenId] = useState("");
   const [config, setConfig] = useState();
 
   const updateTotalSupply = useCallback(async () => {
@@ -193,8 +193,10 @@ const Mint = () => {
       })
       .then((receipt) => {
         console.log(receipt);
+        const tokenId = receipt?.events?.Transfer?.returnValues?.tokenId;
         const { transactionHash } = receipt;
-        setTxHash(transactionHash);
+        console.log({ tokenId, transactionHash });
+        setTokenId(tokenId);
         setMintSucess(true);
         setMinting(false);
       });
@@ -205,7 +207,7 @@ const Mint = () => {
     proof,
     saleState,
     setMintSucess,
-    setTxHash,
+    setTokenId,
     account,
     config,
   ]);
@@ -378,15 +380,17 @@ const Mint = () => {
               </Account>
               <Message>
                 Success!{" "}
-                {txHash && (
-                  <a
-                    href={`https://etherscan.io/tx/${txHash}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Check it on Etherscan
-                  </a>
-                )}
+                <a
+                  href={
+                    tokenId
+                      ? `https://opensea.io/assets/0xf1d88a386354ae740370a45bdfc0a61f6d9871b0/${tokenId}`
+                      : "https://opensea.io/collection/bored-bones-genesis"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Check it on Opensea
+                </a>
               </Message>
             </>
           )}

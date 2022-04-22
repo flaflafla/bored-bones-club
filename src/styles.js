@@ -7,7 +7,7 @@ const Container = styled.div`
 `;
 
 const HeroImage = styled.div`
-  background-image: url(/hero.png);
+  background-image: url(/hero1.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
