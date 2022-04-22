@@ -28,7 +28,7 @@ import abi from "./abi.json";
 
 const MINT_PRICE = 100_000_000_000_000_000; // 0.1Ξ
 const MAX_SUPPLY = 500;
-const GAS_LIMIT = "300000"; // TODO
+const GAS_LIMIT = "150000";
 const MINT_AMOUNT = 1;
 const MAX_AMOUNT_KEY = "0x0";
 
