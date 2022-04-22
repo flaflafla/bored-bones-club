@@ -25,7 +25,6 @@ import {
   Counter,
 } from "./styles";
 import abi from "./abi.json";
-import config from "./config.json";
 
 const MINT_PRICE = 100_000_000_000_000_000; // 0.1Ξ
 const MAX_SUPPLY = 500;
@@ -49,6 +48,7 @@ const Mint = () => {
   const [userBalance, setUserBalance] = useState(0);
   const [merkleRoot, setMerkleRoot] = useState(undefined);
   const [txHash, setTxHash] = useState("");
+  const [config, setConfig] = useState();
 
   const updateTotalSupply = useCallback(async () => {
     let _totalSupply;
@@ -78,6 +78,7 @@ const Mint = () => {
 
   const updateMerkleRoot = useCallback(async () => {
     const _merkleRoot = await smartContract.methods.MerkleRoot().call();
+    console.log({ contractMerkleRoot: _merkleRoot });
     setMerkleRoot(Number(_merkleRoot));
   }, [smartContract, setMerkleRoot]);
 
@@ -118,7 +119,7 @@ const Mint = () => {
         setMintError("Please install MetaMask");
       }
     },
-    [setAccount, setMintError]
+    [setAccount, setMintError, config]
   );
 
   const connectWalletConnect = useCallback(
@@ -158,7 +159,7 @@ const Mint = () => {
         setMintError("Sorry, something went wrong. Please check your wallet.");
       }
     },
-    [setAccount, setMintError, setSmartContract]
+    [setAccount, setMintError, setSmartContract, config]
   );
 
   const mint = useCallback(() => {
@@ -206,13 +207,26 @@ const Mint = () => {
     setMintSucess,
     setTxHash,
     account,
+    config,
   ]);
 
+  const getConfig = useCallback(async () => {
+    const res = await fetch("config.json");
+    const _config = await res.json();
+    setConfig(_config);
+  }, [setConfig]);
+
   useEffect(() => {
-    const tree = getMerkleTree();
+    getConfig();
+  }, []);
+
+  useEffect(() => {
+    const { contractAddress, merkleData } = config || {};
+    if (!contractAddress || !merkleData) return;
+    const tree = getMerkleTree(merkleData);
     setMerkleTree(tree);
-    const { contractAddress } = config;
-    const { ethereum } = window;
+    console.log({ calculatedMerkleRoot: tree.getHexRoot() });
+    const { ethereum } = window || {};
     if (ethereum) {
       Web3EthContract.setProvider(ethereum);
       const SmartContractObj = new Web3EthContract(abi, contractAddress);
@@ -223,7 +237,7 @@ const Mint = () => {
       // install metamask)
       setUserSaleState("__login");
     }
-  }, []);
+  }, [config, setMerkleTree, setSmartContract]);
 
   useEffect(() => {
     if (!account || !merkleTree) return;

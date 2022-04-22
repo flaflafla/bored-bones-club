@@ -52,6 +52,7 @@ const PREVIEW_CONFIG = [
   "/gold.mp4",
   "/platinum.mp4",
   "/diamond.mp4",
+  "/rainbow.mp4",
 ];
 
 const STORY_VIDEO_CONFIG = [
@@ -169,6 +170,15 @@ const Main = () => {
               users to claim their own figures.
             </RoadmapText>
           </RoadmapItem>
+          <div
+            style={{ width: "90%", textAlign: "center", marginBottom: "48px" }}
+          >
+            <img
+              src="/3d.png"
+              alt="3d"
+              style={{ margin: "0 auto", height: "280px" }}
+            />
+          </div>
           <RoadmapItem>
             <RoadmapItemHeader>BONE$ currency</RoadmapItemHeader>
             <RoadmapText>
@@ -370,6 +380,86 @@ const Main = () => {
             as Utrust and PrimeXBT in a marketing capacity.
           </TeamMemberBio>
         </TeamMember>
+        <TeamMember>
+          <TeamMemberImage src="/a1.png" alt="a1" />
+          <TeamMemberName>
+            A1{" "}
+            <TeamMemberTwitter
+              href="https://twitter.com/keepingit_a1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/twitter.png" width="31px" alt="a1-twitter" />
+            </TeamMemberTwitter>
+          </TeamMemberName>
+          <TeamMemberTitle>Mod</TeamMemberTitle>
+          <TeamMemberCountry />
+          <TeamMemberBio>
+            A1 has been in the crypto trading space for 7 years and NFT space
+            for 2 years. Though he may have extensive experience in moderating,
+            it's been for smaller projects. Through his moderating experience,
+            he's learned that true value is in community development and
+            engagement, while keeping the project's integrity flourishing!
+          </TeamMemberBio>
+        </TeamMember>
+        <TeamMember>
+          <TeamMemberImage src="/country.png" alt="country" />
+          <TeamMemberName>
+            CountryFresh{" "}
+            <TeamMemberTwitter
+              href="https://twitter.com/CountryFresh187"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/twitter.png" width="31px" alt="country-twitter" />
+            </TeamMemberTwitter>
+          </TeamMemberName>
+          <TeamMemberTitle>Mod</TeamMemberTitle>
+          <TeamMemberCountry />
+          <TeamMemberBio>
+            CountryFresh is nothing but a pool playing BBQ smoking NFT addict.
+            He also works full time within student loans, and does real estate
+            on the side while still grinding NFTs like it’s a lifestyle. He is
+            passionate about helping people and has been involved with NFT's
+            since 2021, gaining his first role as MOD at Bored Bones Club.
+          </TeamMemberBio>
+        </TeamMember>
+        <TeamMember>
+          <TeamMemberImage src="/kurly.png" alt="kurly" />
+          <TeamMemberName>
+            Kurly{" "}
+            <TeamMemberTwitter
+              href="https://twitter.com/junchristopher_"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/twitter.png" width="31px" alt="kurly-twitter" />
+            </TeamMemberTwitter>
+          </TeamMemberName>
+          <TeamMemberTitle>Mod</TeamMemberTitle>
+          <TeamMemberCountry />
+          <TeamMemberBio>
+            Kurly started his NFT career about 4 months ago. Although he is
+            fairly new to the space, he has been investing in cryptocurrency and
+            the stock market for more than a year and has been successful in
+            that space.
+          </TeamMemberBio>
+        </TeamMember>
+        <div />
+        <TeamMember>
+          <TeamMemberImage src="/fla.png" alt="fla" />
+          <TeamMemberName>fla</TeamMemberName>
+          <TeamMemberTitle>Frontend dev</TeamMemberTitle>
+          <TeamMemberCountry />
+          <TeamMemberBio>
+            fla got into crypto in 2015 and was immediately hooked. As a writer,
+            developer, investor and degenerate, he's spent the past seven years
+            contributing to the financial infrastructure of the future. He
+            spends every waking moment writing web3 things, whether it's
+            JavaScript, Solidity, or prose.
+          </TeamMemberBio>
+        </TeamMember>
+        <div />
       </TeamContainer>
       <StoryContainer id="story">
         <StoryHeader>THE STORY (SO FAR)</StoryHeader>

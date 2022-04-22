@@ -179,7 +179,7 @@ const MintError = styled.div`
 
 const MintButton = styled.button`
   background-color: #000;
-  border: none;
+  border: 4px solid #fa036b;
   position: relative;
   cursor: pointer;
   margin: 36px auto 0 auto;
@@ -187,10 +187,6 @@ const MintButton = styled.button`
   width: 230px;
   height: 230px;
   padding: 10px;
-
-  :hover {
-    border: 4px solid #fa036b;
-  }
 `;
 
 const Message = styled.div`
@@ -232,7 +228,7 @@ const TeamContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   padding-right: 12px;
   padding-left: 12px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 
   @media (max-width: 950px) {
     margin-bottom: 32px;
@@ -376,10 +372,6 @@ const RoadmapContentLeft = styled.div`
   grid-column: 1;
   padding: 0 30px;
 
-  ${RoadmapItem} {
-    margin-bottom: 56px;
-  }
-
   @media (max-width: 950px) {
     grid-column: 1/-1;
     grid-row: 3;
@@ -495,6 +487,8 @@ const TeamMemberImage = styled.img`
 `;
 
 const TeamMember = styled.div`
+  margin-bottom: 48px;
+
   @media (max-width: 950px) {
     grid-column: 1/-1;
   }
@@ -622,6 +616,7 @@ const MintLink = styled.div`
     width: 320px;
     border-radius: 30px;
     padding: 16px;
+    border: 4px solid #fa036b;
   }
 
   @media (max-width: 950px) {
@@ -638,11 +633,6 @@ const MintLink = styled.div`
     img {
       width: 200px;
     }
-  }
-
-  img:hover {
-    border: 4px solid #fa036b;
-    margin-top: -4px;
   }
 `;
 
