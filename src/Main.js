@@ -104,7 +104,7 @@ const Main = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="/discord.png" width="80px" alt="discord" />
+          <img src="/discord1.png" width="80px" alt="discord" />
         </SocialIcon>
         <SocialIcon
           href="https://www.instagram.com/boredbonesclub/"
