@@ -163,22 +163,29 @@ const Main = () => {
         <RoadmapContentLeft>
           <RoadmapSubHeader>Completed BEFORE Mint</RoadmapSubHeader>
           <RoadmapItem>
-            <RoadmapItemHeader>3D figurine prints</RoadmapItemHeader>
-            <RoadmapText>
-              3D figurines of our Bored Bones have been physically printed into
-              real-life figurines in plans for future real-world utility for
-              users to claim their own figures.
-            </RoadmapText>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr auto" }}>
+              <div style={{ gridColumn: 1 }}>
+                <img
+                  src="/3d.png"
+                  alt="3d"
+                  style={{
+                    margin: "0 auto",
+                    height: "200px",
+                    marginLeft: "-60px",
+                  }}
+                />
+              </div>
+              <div style={{ gridColumn: 2 }}>
+                <RoadmapItemHeader>3D figurine prints</RoadmapItemHeader>
+                <RoadmapText>
+                  3D figurines of our Bored Bones have been physically printed
+                  into real-life figurines in plans for future real-world
+                  utility for users to claim their own figures.
+                </RoadmapText>
+              </div>
+            </div>
           </RoadmapItem>
-          <div
-            style={{ width: "90%", textAlign: "center", marginBottom: "48px" }}
-          >
-            <img
-              src="/3d.png"
-              alt="3d"
-              style={{ margin: "0 auto", height: "280px" }}
-            />
-          </div>
+
           <RoadmapItem>
             <RoadmapItemHeader>BONE$ currency</RoadmapItemHeader>
             <RoadmapText>
