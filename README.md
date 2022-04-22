@@ -1,6 +1,6 @@
 # Bored Bones Club Mint Site
 
-create a file `src/config.json` and add the following, along with the appropriate values:
+create a file `public/config.json` and add the following, along with the appropriate values:
 
 ```
 {
