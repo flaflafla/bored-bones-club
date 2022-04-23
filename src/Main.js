@@ -98,10 +98,6 @@ const Main = () => {
           <img src="/mint-now-wide.png" alt="mint now" />
         </a>
       </MintLink> */}
-      <MintLink>
-        <div>500/500</div>
-        <div>SOLD OUT</div>
-      </MintLink>
       <SocialContainer>
         <SocialIcon
           href="https://discord.com/invite/boredbonesclub"

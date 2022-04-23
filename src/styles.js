@@ -7,12 +7,11 @@ const Container = styled.div`
 `;
 
 const HeroImage = styled.div`
-  background-image: url(/hero1.png);
+  background-image: url(/sold-out.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   min-height: 789px;
-  margin-top: -80px;
 `;
 
 const AboutVideo = styled.video`
@@ -35,7 +34,6 @@ const AboutVideo = styled.video`
 const Head = styled.h1`
   font-family: "Rubik", sans-serif;
   font-size: 80px;
-  position: absolute;
   top: 80px;
   text-align: center;
   width: calc(100% - 40px);
