@@ -93,10 +93,14 @@ const Main = () => {
       </TopBar>
       <Head>Bored Bones Club</Head>
       <HeroImage />
-      <MintLink>
+      {/* <MintLink>
         <a href="/mint">
           <img src="/mint-now-wide.png" alt="mint now" />
         </a>
+      </MintLink> */}
+      <MintLink>
+        <div>500/500</div>
+        <div>SOLD OUT</div>
       </MintLink>
       <SocialContainer>
         <SocialIcon

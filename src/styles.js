@@ -191,11 +191,12 @@ const MintButton = styled.button`
 
 const Message = styled.div`
   color: #fff;
-  width: 100%;
+  width: calc(100% - 60px);
   text-align: center;
   font-size: 18px;
   font-weight: bold;
   margin-top: 68px;
+  padding: 0 30px;
 
   & a {
     text-decoration: none;
@@ -607,33 +608,40 @@ const MintLink = styled.div`
   width: 100%;
   text-align: center;
   top: 340px;
+  font-size: 50px;
+  font-family: "Rubik", sans-serif;
+  color: #fa036b;
 
-  img {
-    margin: 0 auto;
-    text-decoration: none;
-    cursor: pointer;
-    background-color: #000;
-    width: 320px;
-    border-radius: 30px;
-    padding: 16px;
-    border: 4px solid #fa036b;
+  div:nth-of-type(2) {
+    font-size: 80px;
   }
 
-  @media (max-width: 950px) {
-    top: 370px;
+  // img {
+  //   margin: 0 auto;
+  //   text-decoration: none;
+  //   cursor: pointer;
+  //   background-color: #000;
+  //   width: 320px;
+  //   border-radius: 30px;
+  //   padding: 16px;
+  //   border: 4px solid #fa036b;
+  // }
 
-    img {
-      width: 260px;
-    }
-  }
+  // @media (max-width: 950px) {
+  //   top: 370px;
 
-  @media (max-width: 650px) {
-    top: 450px;
+  //   img {
+  //     width: 260px;
+  //   }
+  // }
 
-    img {
-      width: 200px;
-    }
-  }
+  // @media (max-width: 650px) {
+  //   top: 450px;
+
+  //   img {
+  //     width: 200px;
+  //   }
+  // }
 `;
 
 const Counter = styled.div`

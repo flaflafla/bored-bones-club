@@ -359,10 +359,11 @@ const Mint = () => {
         />
         <MintSection>
           <Counter>
-            {typeof totalSupply !== "undefined" ? totalSupply : "?"} /{" "}
-            {MAX_SUPPLY}
+            {/* {typeof totalSupply !== "undefined" ? totalSupply : "?"} /{" "}
+            {MAX_SUPPLY} */}
+            500/500
           </Counter>
-          {userSaleState === "__minting" && (
+          {/* {userSaleState === "__minting" && (
             <>
               <Account>
                 <a
@@ -503,25 +504,29 @@ const Mint = () => {
               {mintError && <MintError>{mintError}</MintError>}
             </>
           )}
-          {userSaleState === "__over" && (
-            <>
-              <Account>
-                <a
-                  href={`https://etherscan.io/address/${account}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {account}
-                </a>
-              </Account>
-              <Message>
-                Bored Bones Club is minted out! Check the collection out on{" "}
-                <a href={"#"} target="_blank" rel="noopener noreferrer">
-                  OpenSea
-                </a>
-              </Message>
-            </>
-          )}
+          {userSaleState === "__over" && ( */}
+          <>
+            <Account>
+              <a
+                href={`https://etherscan.io/address/${account}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {account}
+              </a>
+            </Account>
+            <Message>
+              Bored Bones Club is minted out! Check the collection out on{" "}
+              <a
+                href={"https://opensea.io/collection/bored-bones-genesis"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                OpenSea
+              </a>
+            </Message>
+          </>
+          {/* )} */}
         </MintSection>
       </MintContainer>
     </MintOuterContainer>
