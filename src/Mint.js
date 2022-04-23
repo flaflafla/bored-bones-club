@@ -45,10 +45,10 @@ const Mint = () => {
   const [isWhitelisted, setIsWhitelisted] = useState(false);
   const [totalSupply, setTotalSupply] = useState(undefined);
   const [saleActive, setSaleActive] = useState(undefined);
-  const [userBalance, setUserBalance] = useState(0);
   const [merkleRoot, setMerkleRoot] = useState(undefined);
   const [tokenId, setTokenId] = useState("");
   const [config, setConfig] = useState();
+  const [hasMinted, setHasMinted] = useState(false);
 
   const updateTotalSupply = useCallback(async () => {
     let _totalSupply;
@@ -66,15 +66,24 @@ const Mint = () => {
     setTotalSupply(Number(_totalSupply));
   }, [smartContract, setTotalSupply, setUserSaleState, setSmartContract]);
 
+  const updateHasMinted = useCallback(async () => {
+    const mintEvents = await smartContract.getPastEvents("Transfer", {
+      fromBlock: "earliest",
+      toBlock: "latest",
+      filter: {
+        to: account,
+        from: "0x0000000000000000000000000000000000000000",
+      },
+    });
+    const _hasMinted = mintEvents.length > 0;
+    console.log({ _hasMinted });
+    setHasMinted(_hasMinted);
+  }, [account, smartContract, setHasMinted]);
+
   const updateSaleActive = useCallback(async () => {
     const _saleActive = await smartContract.methods.saleActive().call();
     setSaleActive(_saleActive);
   }, [smartContract, setSaleActive]);
-
-  const updateUserBalance = useCallback(async () => {
-    const _balance = await smartContract.methods.balanceOf(account).call();
-    setUserBalance(Number(_balance));
-  }, [account, smartContract, setUserBalance]);
 
   const updateMerkleRoot = useCallback(async () => {
     const _merkleRoot = await smartContract.methods.MerkleRoot().call();
@@ -267,8 +276,8 @@ const Mint = () => {
 
   useEffect(() => {
     if (!smartContract || !account) return;
-    updateUserBalance();
-  }, [smartContract, account, updateUserBalance]);
+    updateHasMinted();
+  }, [smartContract, account, updateHasMinted]);
 
   useEffect(() => {
     if (totalSupply >= MAX_SUPPLY) {
@@ -295,14 +304,14 @@ const Mint = () => {
       account &&
       saleState === "presale" &&
       isWhitelisted &&
-      userBalance > 0
+      hasMinted
     ) {
       setUserSaleState("__waitWhitelisted");
     } else if (
       account &&
       saleState === "presale" &&
       isWhitelisted &&
-      userBalance === 0
+      !hasMinted
     ) {
       setUserSaleState("__premint");
     } else if (account && saleState === "public") {
@@ -316,10 +325,10 @@ const Mint = () => {
     account,
     saleState,
     isWhitelisted,
-    userBalance,
     setUserSaleState,
     minting,
     mintSuccess,
+    hasMinted,
   ]);
 
   useEffect(() => {
