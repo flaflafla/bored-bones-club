@@ -328,7 +328,7 @@ const Main = () => {
       <TeamContainer id="team">
         <TeamHeader>TEAM</TeamHeader>
         <TeamMember>
-          <TeamMemberImage src="/predep.png" alt="predep" />
+          <TeamMemberImage src="/predep.jpeg" alt="predep" />
           <TeamMemberName>
             Predepression{" "}
             <TeamMemberTwitter
@@ -350,7 +350,7 @@ const Main = () => {
           </TeamMemberBio>
         </TeamMember>
         <TeamMember>
-          <TeamMemberImage src="/boro.png" alt="boro" />
+          <TeamMemberImage src="/boro.jpeg" alt="boro" />
           <TeamMemberName>
             Boro{" "}
             <TeamMemberTwitter
@@ -371,28 +371,7 @@ const Main = () => {
           </TeamMemberBio>
         </TeamMember>
         <TeamMember>
-          <TeamMemberImage src="/posty.png" alt="posty" />
-          <TeamMemberName>
-            PostyXBT{" "}
-            <TeamMemberTwitter
-              href="https://twitter.com/PostyXBT"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="/twitter.png" width="31px" alt="posty-twitter" />
-            </TeamMemberTwitter>
-          </TeamMemberName>
-          <TeamMemberTitle>Marketing Advisor</TeamMemberTitle>
-          <TeamMemberCountry>UK</TeamMemberCountry>
-          <TeamMemberBio>
-            His marketing and branding credentials consist of building a
-            personal Twitter audience from 0-75,000 followers via organic
-            content and has helped reputable projects in the crypto space such
-            as Utrust and PrimeXBT in a marketing capacity.
-          </TeamMemberBio>
-        </TeamMember>
-        <TeamMember>
-          <TeamMemberImage src="/a1.png" alt="a1" />
+          <TeamMemberImage src="/a1.jpeg" alt="a1" />
           <TeamMemberName>
             A1{" "}
             <TeamMemberTwitter
@@ -414,7 +393,7 @@ const Main = () => {
           </TeamMemberBio>
         </TeamMember>
         <TeamMember>
-          <TeamMemberImage src="/country.png" alt="country" />
+          <TeamMemberImage src="/country.jpeg" alt="country" />
           <TeamMemberName>
             CountryFresh{" "}
             <TeamMemberTwitter
@@ -436,7 +415,7 @@ const Main = () => {
           </TeamMemberBio>
         </TeamMember>
         <TeamMember>
-          <TeamMemberImage src="/kurly.png" alt="kurly" />
+          <TeamMemberImage src="/kurly.jpeg" alt="kurly" />
           <TeamMemberName>
             Kurly{" "}
             <TeamMemberTwitter
@@ -456,9 +435,8 @@ const Main = () => {
             that space.
           </TeamMemberBio>
         </TeamMember>
-        <div />
         <TeamMember>
-          <TeamMemberImage src="/fla.png" alt="fla" />
+          <TeamMemberImage src="/fla.jpeg" alt="fla" />
           <TeamMemberName>
             fla{" "}
             <TeamMemberTwitter
