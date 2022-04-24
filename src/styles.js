@@ -6,13 +6,7 @@ const Container = styled.div`
   font-size: 15px;
 `;
 
-const HeroImage = styled.div`
-  background-image: url(/sold-out.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  min-height: 789px;
-`;
+const HeroImage = styled.div``;
 
 const AboutVideo = styled.video`
   width: 550px;
@@ -38,6 +32,7 @@ const Head = styled.h1`
   text-align: center;
   width: calc(100% - 40px);
   padding: 0 20px;
+  margin-top: 25px;
 `;
 
 const Icon = styled.div`

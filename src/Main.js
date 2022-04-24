@@ -92,7 +92,9 @@ const Main = () => {
         </TopBarLink>
       </TopBar>
       <Head>Bored Bones Club</Head>
-      <HeroImage />
+      <HeroImage>
+        <img src="/sold-out.png" width={"100%"} alt="discord" />
+      </HeroImage>
       {/* <MintLink>
         <a href="/mint">
           <img src="/mint-now-wide.png" alt="mint now" />
@@ -371,6 +373,28 @@ const Main = () => {
           </TeamMemberBio>
         </TeamMember>
         <TeamMember>
+          <TeamMemberImage src="/fla.jpeg" alt="fla" />
+          <TeamMemberName>
+            fla{" "}
+            <TeamMemberTwitter
+              href="https://twitter.com/fla63551709"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/twitter.png" width="31px" alt="fla-twitter" />
+            </TeamMemberTwitter>
+          </TeamMemberName>
+          <TeamMemberTitle>Frontend dev</TeamMemberTitle>
+          <TeamMemberCountry />
+          <TeamMemberBio>
+            fla got into crypto in 2015 and was immediately hooked. As a writer,
+            developer, investor and degenerate, he's spent the past seven years
+            contributing to the financial infrastructure of the future. He
+            spends every waking moment writing web3 things, whether it's
+            JavaScript, Solidity, or prose.
+          </TeamMemberBio>
+        </TeamMember>
+        <TeamMember>
           <TeamMemberImage src="/a1.jpeg" alt="a1" />
           <TeamMemberName>
             A1{" "}
@@ -433,28 +457,6 @@ const Main = () => {
             fairly new to the space, he has been investing in cryptocurrency and
             the stock market for more than a year and has been successful in
             that space.
-          </TeamMemberBio>
-        </TeamMember>
-        <TeamMember>
-          <TeamMemberImage src="/fla.jpeg" alt="fla" />
-          <TeamMemberName>
-            fla{" "}
-            <TeamMemberTwitter
-              href="https://twitter.com/fla63551709"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="/twitter.png" width="31px" alt="fla-twitter" />
-            </TeamMemberTwitter>
-          </TeamMemberName>
-          <TeamMemberTitle>Frontend dev</TeamMemberTitle>
-          <TeamMemberCountry />
-          <TeamMemberBio>
-            fla got into crypto in 2015 and was immediately hooked. As a writer,
-            developer, investor and degenerate, he's spent the past seven years
-            contributing to the financial infrastructure of the future. He
-            spends every waking moment writing web3 things, whether it's
-            JavaScript, Solidity, or prose.
           </TeamMemberBio>
         </TeamMember>
         <div />
