@@ -169,25 +169,25 @@ const Main = () => {
         <RoadmapContentLeft>
           <RoadmapSubHeader>Completed BEFORE Mint</RoadmapSubHeader>
           <RoadmapItem>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr auto" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "auto 1fr" }}>
               <div style={{ gridColumn: 1 }}>
-                <img
-                  src="/3d.png"
-                  alt="3d"
-                  style={{
-                    margin: "0 auto",
-                    height: "200px",
-                    marginLeft: "-60px",
-                  }}
-                />
-              </div>
-              <div style={{ gridColumn: 2 }}>
                 <RoadmapItemHeader>3D figurine prints</RoadmapItemHeader>
                 <RoadmapText>
                   3D figurines of our Bored Bones have been physically printed
                   into real-life figurines in plans for future real-world
                   utility for users to claim their own figures.
                 </RoadmapText>
+              </div>
+              <div style={{ gridColumn: 2 }}>
+                <img
+                  src="/3d.png"
+                  alt="3d"
+                  style={{
+                    margin: "0 auto",
+                    height: "200px",
+                    marginLeft: "-45px",
+                  }}
+                />
               </div>
             </div>
           </RoadmapItem>
